@@ -6,13 +6,11 @@
 #    By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/23 15:33:19 by hyungjpa          #+#    #+#              #
-#    Updated: 2023/06/27 15:56:50 by hyungjpa         ###   ########.fr        #
+#    Updated: 2023/07/03 16:46:09 by hyungjpa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRC_NAME = philo_main \
-			philo_set \
-			philo_free \
 			ft_atoi \
 
 SRC = ${addsuffix .c, ${SRC_NAME}}

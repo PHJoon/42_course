@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 15:19:34 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/06/27 16:05:28 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/07/03 17:02:50 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,50 +20,50 @@
 # include <sys/time.h>
 # include <pthread.h>
 
-# define LOCK 1
-# define UNLOCK 2
+# define FORK	"has taken a fork\n"
+# define EAT	"is eating\n"
+# define SLEEP	"is sleeping\n"
+# define THINK	"is thinking\n"
+# define DIE	"died\n"
 
-typedef struct s_philo
-{
-	pthread_t	ph;
-	long long	last_eat;
-}	t_philo;
+struct	s_ph;
 
-typedef struct s_fork
-{
-	pthread_mutex_t fork_mtx;
-	long long 		fork;
-}	t_fork;
+typedef struct s_info {
+	int				n_ph;
+	int				t_die;
+	int				t_eat;
+	int				t_sleep;
+	int				must_eat;
 
-typedef struct s_philo_info
-{
-	t_philo			*philo_t;
-	t_fork			*forks;
+	int				die_flag;
 
-	struct timeval	start;
-	long long		p_num;
-	long long		die;
-	long long		eat;
-	long long		sleep;
-	long long		eat_count;
+	long			start_time;
 
-	long long		idx; 
+	struct s_ph		*philos;
 
-	pthread_mutex_t flag_mtx;
-	long long		flag;
+	pthread_mutex_t	print;
+	pthread_mutex_t	die;
+	pthread_mutex_t	*forks;
+}	t_info;
 
-}	t_philo_info;
+typedef struct s_ph {
+	int				num;
+	int				l_fork;
+	int				r_fork;
+	long			last_eat;
+
+	struct s_info	*info;
+
+	pthread_t		ph;
+}	t_ph;
 
 
 int	ft_atoi(const char *str);
 
 // philo_set.c
-t_philo_info	*set_info(int ac, char **av);
-t_philo_info	*set_struct(t_philo_info *info);
 
 
 // philo_free.c
-t_philo_info	*free_atoi(t_philo_info *info);
 
 
 #endif
