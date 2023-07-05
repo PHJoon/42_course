@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 15:19:34 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/07/03 17:02:50 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/07/05 13:55:50 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ typedef struct s_info {
 	int				t_die;
 	int				t_eat;
 	int				t_sleep;
-	int				must_eat;
+	int				max_eat;
 	int				finish_meal;
 
 	int				die_flag;
@@ -45,6 +45,7 @@ typedef struct s_info {
 	pthread_mutex_t	print;
 	pthread_mutex_t	die;
 	pthread_mutex_t	*forks;
+	pthread_mutex_t	time_mtx;
 }	t_info;
 
 typedef struct s_ph {
@@ -65,7 +66,7 @@ typedef struct s_ph {
 
 
 int	ft_atoi(const char *str);
-
+int	ft_strncmp(const char *s1, const char *s2, size_t n);
 // philo_set.c
 
 
