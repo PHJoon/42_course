@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 16:00:29 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/07/05 16:23:37 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/07/05 18:35:11 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,22 @@ void	do_time(long long usleep_time, t_info *info)
 			break ;
 		usleep(1000);
 	}
+}
+
+void	destory_mutex(t_info *info)
+{
+	int	i;
+
+	i = -1;
+	while (++i < info->n_ph)
+		pthread_mutex_destroy(&info->forks[i]);
+	pthread_mutex_destroy(&info->print);
+	pthread_mutex_destroy(&info->die);
+	pthread_mutex_destroy(&info->time_mtx);
+}
+
+void	free_struct(t_ph *philos, t_info *info)
+{
+	free(philos);
+	free(info);
 }
