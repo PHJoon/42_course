@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 15:19:34 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/07/05 16:06:12 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/07/05 17:46:32 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef struct s_info {
 	pthread_mutex_t	die;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	time_mtx;
+	pthread_mutex_t	eat_mtx;
 }	t_info;
 
 typedef struct s_ph {

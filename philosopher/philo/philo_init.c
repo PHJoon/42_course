@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 15:59:55 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/07/05 16:01:47 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/07/05 18:02:09 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ t_info	*set_info(int ac, char **av)
 	info->t_die = ft_atoi(av[2]);
 	info->t_eat = ft_atoi(av[3]);
 	info->t_sleep = ft_atoi(av[4]);
+	info->finish_meal = 0;
 	info->max_eat = -1;
 	if (ac == 6)
 		info->max_eat = ft_atoi(av[5]);
@@ -43,6 +44,12 @@ t_info	*set_info(int ac, char **av)
 		// free
 		return (NULL);
 	}
+	if (pthread_mutex_init(&info->eat_mtx, NULL) == -1)
+	{
+		// free
+		return (NULL);
+	}
+
 	info->forks = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * info->n_ph);
 	int	i;
 	i = -1;

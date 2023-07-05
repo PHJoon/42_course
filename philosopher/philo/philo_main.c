@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 15:18:55 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/07/05 16:04:21 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/07/05 18:19:07 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,6 @@ int	start_philo(t_ph *philos, t_info *info)
 	while (++i < info->n_ph)
 	{
 		pthread_create(&philos[i].ph, NULL, philo_loop, (void *)&philos[i]);
-		if (i % 2 == 1)
-			usleep(1000);
 		// pthread_create 실패 로직 추가
 	}
 	info->start_time = get_time();
@@ -45,10 +43,10 @@ int	start_philo(t_ph *philos, t_info *info)
 
 	i = -1;
 	while (++i < info->n_ph)
-	{
 		pthread_join(philos[i].ph, NULL);
-	}
-	// mutex destroy
+	i = -1;
+	while (++i < info->n_ph)
+		pthread_mutex_destroy(&info->forks[i]);
 
 	return (1);
 }

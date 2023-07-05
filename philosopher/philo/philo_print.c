@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 16:02:11 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/07/05 16:02:20 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/07/05 17:13:55 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,10 @@ int	print_state(t_ph *philo, char *str)
 	{
 		printf("%ld %d %s", now, philo->name, str);
 		if (!ft_strncmp(str, DIE, 5))
+		{
 			philo->info->die_flag = 1;
+			return (0);
+		}
 	}
 	else
 		return (0);

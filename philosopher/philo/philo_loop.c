@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 16:03:35 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/07/05 16:07:05 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/07/05 18:15:22 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,36 +20,38 @@ void	*philo_loop(void *data)
 	philo = (t_ph *)data;
 	philo->last_eat = philo->info->start_time;
 
-	// 시간 설정되면 루프 돌아가는 뮤텍스
-	int	time_flag;
-
-	time_flag = 1;
-	if (time_flag)
-	{
-		pthread_mutex_lock(&philo->info->time_mtx);
-		time_flag = 0;
-		philo->last_eat = philo->info->start_time;
-		pthread_mutex_unlock(&philo->info->time_mtx);
-	}
+	pthread_mutex_lock(&philo->info->time_mtx);
+	pthread_mutex_unlock(&philo->info->time_mtx);
 
 	//먹고
 	while (1)
 	{
+		if (philo->name % 2 == 0)
+			usleep(200);
 		pthread_mutex_lock(&philo->info->forks[philo->fork_one]);
-		if (!print_state(philo, FORK))
-			return (NULL);
+		print_state(philo, FORK);
 		pthread_mutex_lock(&philo->info->forks[philo->fork_two]);
-		if (!print_state(philo, FORK))
-			return (NULL);
+		print_state(philo, FORK);
 
 		if (!print_state(philo, EAT))
+		{
+			pthread_mutex_unlock(&philo->info->forks[philo->fork_one]);
+			pthread_mutex_unlock(&philo->info->forks[philo->fork_two]);
 			return (NULL);
+		}
 
 		philo->eat_num++;
+		pthread_mutex_lock(&philo->info->eat_mtx);
 		philo->last_eat = get_time();
+		pthread_mutex_unlock(&philo->info->eat_mtx);
 
 		if (philo->info->max_eat != -1 && philo->eat_num == philo->info->max_eat)
+		{
+			pthread_mutex_unlock(&philo->info->forks[philo->fork_one]);
+			pthread_mutex_unlock(&philo->info->forks[philo->fork_two]);
+
 			return (NULL);
+		}
 
 		do_time(philo->info->t_eat, philo->info);
 
@@ -64,7 +66,7 @@ void	*philo_loop(void *data)
 		// 생각하고
 		if (!print_state(philo, THINK))
 			return (NULL);
-		
+		usleep(200);
 	}
 
 	return (NULL);
@@ -72,22 +74,30 @@ void	*philo_loop(void *data)
 
 int	check_dead_loop(t_ph *philos, t_info *info)
 {
-	int			i;
-	long long	now;
+	int	i;
 
-	i = -1;
-	usleep(100);
 	while (1)
 	{
+		// pthread_mutex_lock(&info->die);
+		if (!info->die_flag && info->finish_meal == info->n_ph)
+		{
+			// pthread_mutex_unlock(&info->die);
+			return (0);
+		}
+		i = -1;
 		while (++i < info->n_ph)
 		{
-			now = get_time();
-			if (now - philos[i].last_eat > info->t_eat || info->finish_meal == info->n_ph)
+			pthread_mutex_lock(&info->eat_mtx);
+			if (philos[i].last_eat && get_time() - philos[i].last_eat >= info->t_die)
 			{
+				pthread_mutex_unlock(&info->eat_mtx);
+				// pthread_mutex_unlock(&info->die);
 				print_state(&philos[i], DIE);
 				return (0);
 			}
+			pthread_mutex_unlock(&info->eat_mtx);
 		}
+		usleep(200);
 	}
 
 	return (1);

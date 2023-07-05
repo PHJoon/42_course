@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 16:00:29 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/07/05 16:03:04 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/07/05 16:23:37 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,6 @@ void	do_time(long long usleep_time, t_info *info)
 	{
 		if (get_time() - start >= usleep_time)
 			break ;
-		usleep(100);
+		usleep(1000);
 	}
 }
