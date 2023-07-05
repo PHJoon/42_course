@@ -44,10 +44,10 @@ t_info	*set_info(int ac, char **av)
 	info->t_die = ft_atoi(av[2]);
 	info->t_eat = ft_atoi(av[3]);
 	info->t_sleep = ft_atoi(av[4]);
+	info->must_eat = -1;
 	if (ac == 6)
 		info->must_eat = ft_atoi(av[5]);
-	else
-		info->must_eat = -1;
+	
 	if (pthread_mutex_init(&info->print, NULL) == -1)
 	{
 		free(info);
@@ -79,10 +79,16 @@ t_ph	*set_ph(t_info *info)
 	i = -1;
 	while (++i < info->n_ph)
 	{
-		philos[i].num = i + 1;
+		philos[i].name = i + 1;
+		philos[i].eat_num = 0;
 		philos[i].last_eat = 0;
-		philos[i].l_fork = -1;
-		philos[i].r_fork = -1;
+		philos[i].fork_one = (i + 1) % (info->n_ph + 1);
+		philos[i].fork_two = i;
+		if (i % 2 == 1)
+		{
+			philos[i].fork_one = i;
+			philos[i].fork_two = (i + 1) % (info->n_ph + 1);
+		}
 		philos[i].info = info;
 	}
 	info->philos = philos;
@@ -96,71 +102,71 @@ void	print_state(t_ph *philo, char *str)
 	now = get_time() - philo->info->start_time;
 
 	// 죽음
-	pthread_mutex_lock(info->die);
-
-	pthread_mutex_unlock(info->die);
-
-
+	pthread_mutex_lock(&philo->info->die);
 	pthread_mutex_lock(&philo->info->print);
-	printf("%ld %d %s", now, philo->num, str);
+
+	if (!philo->info->die_flag)
+		printf("%ldms  %d  %s", now, philo->name, str);
+
+	pthread_mutex_unlock(&philo->info->die);
 	pthread_mutex_unlock(&philo->info->print);
 }
 
+
+void	do_time(long long usleep_time, t_info *info)
+{
+	long long	start;
+
+	start = get_time();
+	while (!info->die_flag)
+	{
+		if (get_time() - start >= usleep_time)
+			break;
+		usleep(usleep_time);
+	}
+}
 
 
 void	*philo_loop(void *data)
 {
 	t_ph	*philo;
 
+	// 세팅
 	philo = (t_ph *)data;
+	philo->last_eat = philo->info->start_time;
+	
 	//먹고
-
-	// 홀수
-	if (philo->num % 2 == 1)
-	{
-		pthread_mutex_lock(&philo->info->forks[philo->num % philo->info->n_ph]);
-		philo->r_fork = 1;
-		print_state(philo, FORK);
-		pthread_mutex_lock(&philo->info->forks[philo->num - 1]);
-		philo->l_fork = 1;
-		print_state(philo, FORK);
-	}
-	// 짝수
-	else
-	{
-		pthread_mutex_lock(&philo->info->forks[philo->num - 1]);
-		philo->l_fork = 1;
-		print_state(philo, FORK);
-		pthread_mutex_lock(&philo->info->forks[philo->num % philo->info->n_ph]);
-		philo->r_fork = 1;
-		print_state(philo, FORK);
-	}
+	pthread_mutex_lock(&philo->info->forks[philo->fork_one]);
+	print_state(philo, FORK);
+	pthread_mutex_lock(&philo->info->forks[philo->fork_two]);
+	print_state(philo, FORK);
 
 	print_state(philo, EAT);
-	pthread_mutex_unlock(&philo->info->forks[philo->num - 1]);
-	pthread_mutex_unlock(&philo->info->forks[philo->num % philo->info->n_ph]);
-	philo->l_fork = 0;
-	philo->r_fork = 0;
+	
+	philo->eat_num++;
+	philo->last_eat = get_time();
+
+	do_time(philo->info->t_eat, philo->info);
+
+	pthread_mutex_unlock(&philo->info->forks[philo->fork_one]);
+	pthread_mutex_unlock(&philo->info->forks[philo->fork_two]);
 
 	//자고
-	usleep(philo->info->t_eat);
 	print_state(philo, SLEEP);
-
-	usleep(philo->info->t_sleep);
+	do_time(philo->info->t_sleep, philo->info);
+	
 	//생각하고
-	// print_state(philo, THINK);
-
+	print_state(philo, THINK);
 
 	return (NULL);
-	
 }
 
-void	*monitor_loop(void *data)
+int	check_dead_loop(t_ph *philos, t_info *info)
 {
-	t_info	*info;
+	(void)philos;
+	(void)info;
 
-	info = (t_info *)data;
-	return (NULL);
+	return (1);
 }
 
 
@@ -170,19 +176,25 @@ void	*monitor_loop(void *data)
 int	start_philo(t_ph *philos, t_info *info)
 {
 	int	i;
-	pthread_t	monitor;
 	i = -1;
 
 	info->start_time = get_time();
-	while (++i < info->n_ph + 1)
+	while (++i < info->n_ph)
 	{
-		if (i == info->n_ph)
-			pthread_create(&monitor, NULL, monitor_loop, (void *)info);
-		else
-			pthread_create(&philos[i].ph, NULL, philo_loop, (void *)&philos[i]);
+		pthread_create(&philos[i].ph, NULL, philo_loop, (void *)&philos[i]);
 		// pthread_create 실패 로직 추가
 		usleep(10);
 	}
+
+	check_dead_loop(philos, info);
+
+	i = -1;
+	while (++i < info->n_ph)
+	{
+		pthread_join(philos[i].ph, NULL);
+	}
+	// mutex destory
+
 	return (1);
 }
 
@@ -207,7 +219,7 @@ int	main(int ac, char **av)
 
 	start_philo(philos, info);
 
-
+	// free 구조체
 
 	return (0);
 }

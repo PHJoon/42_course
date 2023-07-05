@@ -34,10 +34,11 @@ typedef struct s_info {
 	int				t_eat;
 	int				t_sleep;
 	int				must_eat;
+	int				finish_meal;
 
 	int				die_flag;
 
-	long			start_time;
+	long long		start_time;
 
 	struct s_ph		*philos;
 
@@ -47,10 +48,15 @@ typedef struct s_info {
 }	t_info;
 
 typedef struct s_ph {
-	int				num;
-	int				l_fork;
-	int				r_fork;
-	long			last_eat;
+	int				name;
+	int				fork_one;
+	int				fork_two;
+	int				eat_num;
+
+
+
+	long long		last_eat;
+	
 
 	struct s_info	*info;
 
