@@ -6,11 +6,15 @@
 #    By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/23 15:33:19 by hyungjpa          #+#    #+#              #
-#    Updated: 2023/07/05 13:55:06 by hyungjpa         ###   ########.fr        #
+#    Updated: 2023/07/05 16:04:34 by hyungjpa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRC_NAME = philo_main \
+			philo_init \
+			philo_loop \
+			philo_print \
+			philo_utils \
 			ft_atoi \
 			ft_strncmp \
 

@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 15:19:34 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/07/05 13:55:50 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/07/05 16:06:12 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ typedef struct s_ph {
 
 
 	long long		last_eat;
-	
+
 
 	struct s_info	*info;
 
@@ -67,10 +67,17 @@ typedef struct s_ph {
 
 int	ft_atoi(const char *str);
 int	ft_strncmp(const char *s1, const char *s2, size_t n);
-// philo_set.c
+
+t_info	*set_info(int ac, char **av);
+t_ph	*set_ph(t_info *info);
+
+long	get_time(void);
+void	do_time(long long usleep_time, t_info *info);
 
 
-// philo_free.c
+void	*philo_loop(void *data);
+int	check_dead_loop(t_ph *philos, t_info *info);
 
+int	print_state(t_ph *philo, char *str);
 
 #endif
