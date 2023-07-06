@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 15:18:55 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/07/05 18:56:19 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/07/06 18:51:58 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,20 @@ int	check_av(int ac, char **av)
 int	start_philo(t_ph *philos, t_info *info)
 {
 	int	i;
+	int	j;
 
 	i = -1;
+	j = -1;
 	pthread_mutex_lock(&info->time_mtx);
 	while (++i < info->n_ph)
 	{
-		if (!pthread_create(&philos[i].ph, NULL, philo_loop, \
+		if (pthread_create(&philos[i].ph, NULL, philo_loop, \
 		(void *)&philos[i]))
+		{
+			while (++j <= i)
+				pthread_detach(philos[j].ph);
 			return (0);
+		}
 	}
 	info->start_time = get_time();
 	pthread_mutex_unlock(&info->time_mtx);
@@ -58,12 +64,18 @@ int	main(int ac, char **av)
 	philos = set_ph(info);
 	if (!philos)
 	{
-		destory_mutex(info);
+		destroy_mutex_all(info);
+		free(info->forks_mtx);
 		free(info);
 		return (ft_error("Error!\n"));
 	}
-	start_philo(philos, info);
-	destory_mutex(info);
+	if (!start_philo(philos, info))
+	{
+		destroy_mutex_all(info);
+		free_struct(philos, info);
+		return (ft_error("Error!\n"));
+	}
+	destroy_mutex_all(info);
 	free_struct(philos, info);
 	return (0);
 }

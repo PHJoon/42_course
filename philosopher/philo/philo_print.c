@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 16:02:11 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/07/05 18:40:12 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/07/06 18:44:32 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,28 @@
 
 int	print_state(t_ph *philo, char *str)
 {
-	long	now;
+	long long	now;
+	t_info		*info;
+	int			ret;
 
-	now = get_time() - philo->info->start_time;
-	pthread_mutex_lock(&philo->info->die);
-	pthread_mutex_lock(&philo->info->print);
-	if (!philo->info->die_flag)
+	info = philo->info;
+	ret = 0;
+	pthread_mutex_lock(&info->die_mtx);
+	pthread_mutex_lock(&info->print_mtx);
+	if (!info->die_flag)
 	{
-		printf("%ld %d %s", now, philo->name, str);
+		now = get_time() - info->start_time;
+		printf("%lld %d %s", now, philo->name, str);
+		ret = 1;
 		if (!ft_strncmp(str, DIE, 5))
 		{
-			philo->info->die_flag = 1;
-			return (0);
+			info->die_flag = 1;
+			ret = 0;
 		}
 	}
-	else
-		return (0);
-	pthread_mutex_unlock(&philo->info->die);
-	pthread_mutex_unlock(&philo->info->print);
-	return (1);
+	pthread_mutex_unlock(&info->die_mtx);
+	pthread_mutex_unlock(&info->print_mtx);
+	return (ret);
 }
 
 int	ft_error(char *str)

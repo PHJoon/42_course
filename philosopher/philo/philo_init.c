@@ -6,11 +6,36 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 15:59:55 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/07/05 18:55:42 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/07/06 18:34:34 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+t_info	*mutex_init(t_info *info)
+{
+	int	i;
+
+	i = -1;
+	if (pthread_mutex_init(&info->print_mtx, NULL))
+		return (destroy_mutex(info, 0, 0));
+	if (pthread_mutex_init(&info->die_mtx, NULL))
+		return (destroy_mutex(info, 1, 0));
+	if (pthread_mutex_init(&info->time_mtx, NULL))
+		return (destroy_mutex(info, 2, 0));
+	if (pthread_mutex_init(&info->eat_mtx, NULL))
+		return (destroy_mutex(info, 3, 0));
+	info->forks_mtx = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) \
+	* info->n_ph);
+	if (!info->forks_mtx)
+		return (destroy_mutex(info, 4, 0));
+	while (++i < info->n_ph)
+	{
+		if (pthread_mutex_init(&info->forks_mtx[i], NULL))
+			return (destroy_mutex(info, 5, i));
+	}
+	return (info);
+}
 
 t_info	*set_info(int ac, char **av)
 {
@@ -25,60 +50,19 @@ t_info	*set_info(int ac, char **av)
 	info->t_sleep = ft_atoi(av[4]);
 	info->finish_meal = 0;
 	info->max_eat = -1;
+	info->die_flag = 0;
 	if (ac == 6)
 		info->max_eat = ft_atoi(av[5]);
-	if (!pthread_mutex_init(&info->print, NULL))
-	{
-		free(info);
+	info = mutex_init(info);
+	if (!info)
 		return (NULL);
-	}
-	if (!pthread_mutex_init(&info->die, NULL))
-	{
-		free(info);
-		pthread_mutex_destroy(&info->print);
-		return (NULL);
-	}
-	if (!pthread_mutex_init(&info->time_mtx, NULL))
-	{
-		free(info);
-		pthread_mutex_destroy(&info->print);
-		pthread_mutex_destroy(&info->die);
-		return (NULL);
-	}
-
-	info->forks = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * info->n_ph);
-	if (!info->forks)
-	{
-		free(info);
-		pthread_mutex_destroy(&info->print);
-		pthread_mutex_destroy(&info->die);
-		pthread_mutex_destroy(&info->time_mtx);
-		return (NULL);
-	}
-	int	i;
-	int j;
-	i = -1;
-	while (++i < info->n_ph)
-	{
-		if (!pthread_mutex_init(&info->forks[i], NULL))
-		{
-			j = -1;
-			while (++j <= i)
-				pthread_mutex_destroy(&info->forks[i]);
-			free(info);
-			pthread_mutex_destroy(&info->print);
-			pthread_mutex_destroy(&info->die);
-			pthread_mutex_destroy(&info->time_mtx);
-			return (NULL);
-		}
-	}
 	return (info);
 }
 
 t_ph	*set_ph(t_info *info)
 {
 	t_ph	*philos;
-	int 	i;
+	int		i;
 
 	i = -1;
 	philos = (t_ph *)malloc(sizeof(t_ph) * info->n_ph);
@@ -89,12 +73,12 @@ t_ph	*set_ph(t_info *info)
 		philos[i].name = i + 1;
 		philos[i].eat_num = 0;
 		philos[i].last_eat = 0;
-		philos[i].fork_one = (i + 1) % (info->n_ph + 1);
-		philos[i].fork_two = i;
-		if (i % 2 == 1)
+		philos[i].fork_one = (i + 1) % (info->n_ph);
+		philos[i].fork_two = i % info->n_ph;
+		if (i % 2 == 1 || (i % 2 == 0 && i == info->n_ph - 1))
 		{
-			philos[i].fork_one = i;
-			philos[i].fork_two = (i + 1) % (info->n_ph + 1);
+			philos[i].fork_one = i % info->n_ph;
+			philos[i].fork_two = (i + 1) % (info->n_ph);
 		}
 		philos[i].info = info;
 	}

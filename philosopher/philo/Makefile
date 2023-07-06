@@ -6,7 +6,7 @@
 #    By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/23 15:33:19 by hyungjpa          #+#    #+#              #
-#    Updated: 2023/07/05 16:04:34 by hyungjpa         ###   ########.fr        #
+#    Updated: 2023/07/06 15:09:45 by hyungjpa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ P_INCLUDE = -lpthread
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -fsanitize=thread -g
 
 all : ${NAME}
 
