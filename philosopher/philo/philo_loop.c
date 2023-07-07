@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 16:03:35 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/07/06 18:54:43 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/07/07 13:45:28 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,17 +39,14 @@ int	do_eat(t_ph *philo)
 	pthread_mutex_lock(&philo->info->forks_mtx[philo->fork_two]);
 	if (!print_state(philo, FORK))
 		return (put_down_forks(philo, 2));
-	pthread_mutex_lock(&philo->info->eat_mtx);
-	philo->last_eat = get_time();
-	pthread_mutex_unlock(&philo->info->eat_mtx);
 	print_state(philo, EAT);
 	philo->eat_num++;
 	do_time(philo->info->t_eat, philo->info);
 	if (philo->info->max_eat != -1 && philo->eat_num == philo->info->max_eat)
 	{
-		pthread_mutex_lock(&philo->info->eat_mtx);
+		pthread_mutex_lock(&philo->info->die_mtx);
 		philo->info->finish_meal++;
-		pthread_mutex_unlock(&philo->info->eat_mtx);
+		pthread_mutex_unlock(&philo->info->die_mtx);
 		return (put_down_forks(philo, 2));
 	}
 	put_down_forks(philo, 2);
@@ -72,12 +69,12 @@ void	*philo_loop(void *data)
 	philo = (t_ph *)data;
 	info = philo->info;
 	pthread_mutex_lock(&info->time_mtx);
-	pthread_mutex_lock(&info->eat_mtx);
+	pthread_mutex_lock(&info->die_mtx);
 	philo->last_eat = info->start_time;
-	pthread_mutex_unlock(&info->eat_mtx);
+	pthread_mutex_unlock(&info->die_mtx);
 	pthread_mutex_unlock(&info->time_mtx);
 	if (philo->name % 2 == 0)
-		usleep(100);
+		usleep(50);
 	while (1)
 	{
 		if (!do_eat(philo))
@@ -100,33 +97,20 @@ void	check_dead_loop(t_ph *philos, t_info *info)
 		while (++i < info->n_ph)
 		{
 			pthread_mutex_lock(&info->die_mtx);
-			if (info->die_flag == 1)
-			{
-				pthread_mutex_unlock(&info->die_mtx);
-				return ;
-			}
-			pthread_mutex_unlock(&info->die_mtx);
-			pthread_mutex_lock(&info->eat_mtx);
 			if (info->finish_meal == info->n_ph)
 			{
-				pthread_mutex_unlock(&info->eat_mtx);
-				pthread_mutex_lock(&info->die_mtx);
 				info->die_flag = 1;
 				pthread_mutex_unlock(&info->die_mtx);
 				return ;
 			}
-			pthread_mutex_unlock(&info->eat_mtx);
-			pthread_mutex_lock(&info->die_mtx);
-			pthread_mutex_lock(&info->eat_mtx);
-			if (philos[i].last_eat && get_time() - philos[i].last_eat >= info->t_die)
+			if (philos[i].last_eat && get_time() - philos[i].last_eat \
+			>= info->t_die)
 			{
-				pthread_mutex_unlock(&info->eat_mtx);
 				pthread_mutex_unlock(&info->die_mtx);
 				print_state(&philos[i], DIE);
 				return ;
 			}
 			pthread_mutex_unlock(&info->die_mtx);
-			pthread_mutex_unlock(&info->eat_mtx);
 		}
 	}
 }

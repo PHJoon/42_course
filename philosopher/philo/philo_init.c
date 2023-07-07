@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 15:59:55 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/07/06 18:34:34 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/07/07 13:43:49 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,14 @@ t_info	*mutex_init(t_info *info)
 		return (destroy_mutex(info, 1, 0));
 	if (pthread_mutex_init(&info->time_mtx, NULL))
 		return (destroy_mutex(info, 2, 0));
-	if (pthread_mutex_init(&info->eat_mtx, NULL))
-		return (destroy_mutex(info, 3, 0));
 	info->forks_mtx = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) \
 	* info->n_ph);
 	if (!info->forks_mtx)
-		return (destroy_mutex(info, 4, 0));
+		return (destroy_mutex(info, 3, 0));
 	while (++i < info->n_ph)
 	{
 		if (pthread_mutex_init(&info->forks_mtx[i], NULL))
-			return (destroy_mutex(info, 5, i));
+			return (destroy_mutex(info, 4, i));
 	}
 	return (info);
 }
@@ -44,15 +42,15 @@ t_info	*set_info(int ac, char **av)
 	info = (t_info *)malloc(sizeof(t_info));
 	if (!info)
 		return (NULL);
-	info->n_ph = ft_atoi(av[1]);
-	info->t_die = ft_atoi(av[2]);
-	info->t_eat = ft_atoi(av[3]);
-	info->t_sleep = ft_atoi(av[4]);
+	info->n_ph = (int)ft_atoll(av[1]);
+	info->t_die = (int)ft_atoll(av[2]);
+	info->t_eat = (int)ft_atoll(av[3]);
+	info->t_sleep = (int)ft_atoll(av[4]);
 	info->finish_meal = 0;
 	info->max_eat = -1;
 	info->die_flag = 0;
 	if (ac == 6)
-		info->max_eat = ft_atoi(av[5]);
+		info->max_eat = (int)ft_atoll(av[5]);
 	info = mutex_init(info);
 	if (!info)
 		return (NULL);

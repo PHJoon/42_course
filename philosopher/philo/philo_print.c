@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 16:02:11 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/07/06 18:44:32 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/07/07 13:31:36 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,15 @@ int	print_state(t_ph *philo, char *str)
 
 	info = philo->info;
 	ret = 0;
-	pthread_mutex_lock(&info->die_mtx);
 	pthread_mutex_lock(&info->print_mtx);
+	pthread_mutex_lock(&info->die_mtx);
 	if (!info->die_flag)
 	{
-		now = get_time() - info->start_time;
-		printf("%lld %d %s", now, philo->name, str);
+		now = get_time();
+		printf("%lld %d %s", now - info->start_time, philo->name, str);
 		ret = 1;
+		if (!ft_strncmp(str, EAT, 9))
+			philo->last_eat = now;
 		if (!ft_strncmp(str, DIE, 5))
 		{
 			info->die_flag = 1;
@@ -38,8 +40,8 @@ int	print_state(t_ph *philo, char *str)
 	return (ret);
 }
 
-int	ft_error(char *str)
+int	print_error(char *str)
 {
-	printf("%s\n", str);
+	printf("%s", str);
 	return (1);
 }

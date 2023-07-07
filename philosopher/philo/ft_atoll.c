@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 15:56:35 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/06/27 16:07:39 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/07/07 13:33:49 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,11 @@ static int	check_str(char *str, int *ptr)
 	return (m_cnt);
 }
 
-int	ft_atoi(const char *str)
+long long	ft_atoll(const char *str)
 {
-	int	i;
-	int	m_cnt;
-	int	res;
+	int			i;
+	int			m_cnt;
+	long long	res;
 
 	i = 0;
 	res = 0;

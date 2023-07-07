@@ -6,16 +6,18 @@
 #    By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/23 15:33:19 by hyungjpa          #+#    #+#              #
-#    Updated: 2023/07/06 15:09:45 by hyungjpa         ###   ########.fr        #
+#    Updated: 2023/07/07 13:45:53 by hyungjpa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRC_NAME = philo_main \
+			philo_check_argv \
+			philo_free \
 			philo_init \
 			philo_loop \
 			philo_print \
 			philo_utils \
-			ft_atoi \
+			ft_atoll \
 			ft_strncmp \
 
 SRC = ${addsuffix .c, ${SRC_NAME}}
