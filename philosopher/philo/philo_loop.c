@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 16:03:35 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/07/07 13:45:28 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/07/07 18:20:53 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,16 @@ int	do_eat(t_ph *philo)
 	if (!print_state(philo, FORK))
 		return (put_down_forks(philo, 2));
 	print_state(philo, EAT);
-	philo->eat_num++;
 	do_time(philo->info->t_eat, philo->info);
+	philo->eat_num++;
+	pthread_mutex_lock(&philo->info->die_mtx);
+	philo->last_eat = get_time();
+	pthread_mutex_unlock(&philo->info->die_mtx);
 	if (philo->info->max_eat != -1 && philo->eat_num == philo->info->max_eat)
 	{
 		pthread_mutex_lock(&philo->info->die_mtx);
 		philo->info->finish_meal++;
 		pthread_mutex_unlock(&philo->info->die_mtx);
-		return (put_down_forks(philo, 2));
 	}
 	put_down_forks(philo, 2);
 	return (1);
@@ -74,7 +76,7 @@ void	*philo_loop(void *data)
 	pthread_mutex_unlock(&info->die_mtx);
 	pthread_mutex_unlock(&info->time_mtx);
 	if (philo->name % 2 == 0)
-		usleep(50);
+		usleep(100);
 	while (1)
 	{
 		if (!do_eat(philo))
@@ -83,6 +85,7 @@ void	*philo_loop(void *data)
 			return (NULL);
 		if (!print_state(philo, THINK))
 			return (NULL);
+		usleep(100);
 	}
 	return (NULL);
 }
@@ -111,6 +114,7 @@ void	check_dead_loop(t_ph *philos, t_info *info)
 				return ;
 			}
 			pthread_mutex_unlock(&info->die_mtx);
+			usleep(300);
 		}
 	}
 }

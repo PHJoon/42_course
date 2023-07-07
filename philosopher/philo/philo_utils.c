@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 16:00:29 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/07/07 13:45:07 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/07/07 17:30:37 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,6 @@ void	do_time(long long usleep_time, t_info *info)
 		pthread_mutex_unlock(&info->die_mtx);
 		if (get_time() - start >= usleep_time)
 			break ;
-		usleep(30);
+		usleep(300);
 	}
 }

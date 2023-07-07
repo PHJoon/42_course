@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 16:02:11 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/07/07 13:31:36 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/07/07 14:39:43 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@ int	print_state(t_ph *philo, char *str)
 		now = get_time();
 		printf("%lld %d %s", now - info->start_time, philo->name, str);
 		ret = 1;
-		if (!ft_strncmp(str, EAT, 9))
-			philo->last_eat = now;
 		if (!ft_strncmp(str, DIE, 5))
 		{
 			info->die_flag = 1;

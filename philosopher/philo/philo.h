@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 15:19:34 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/07/07 13:44:14 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/07/07 14:07:34 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ typedef struct s_ph {
 	struct s_info	*info;
 	pthread_t		ph;
 }	t_ph;
-
 
 long long	ft_atoll(const char *str);
 int			ft_strncmp(const char *s1, const char *s2, size_t n);
