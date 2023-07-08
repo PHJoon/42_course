@@ -33,7 +33,7 @@ typedef struct s_info {
 	int				t_die;
 	int				t_eat;
 	int				t_sleep;
-	int				max_eat;
+	int				must_eat;
 	int				finish_meal;
 	int				die_flag;
 	long long		start_time;

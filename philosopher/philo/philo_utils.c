@@ -36,6 +36,6 @@ void	do_time(long long usleep_time, t_info *info)
 		pthread_mutex_unlock(&info->die_mtx);
 		if (get_time() - start >= usleep_time)
 			break ;
-		usleep(300);
+		usleep(100);
 	}
 }

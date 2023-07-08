@@ -45,7 +45,7 @@ int	do_eat(t_ph *philo)
 	pthread_mutex_lock(&philo->info->die_mtx);
 	philo->last_eat = get_time();
 	pthread_mutex_unlock(&philo->info->die_mtx);
-	if (philo->info->max_eat != -1 && philo->eat_num == philo->info->max_eat)
+	if (philo->info->must_eat != -1 && philo->eat_num == philo->info->must_eat)
 	{
 		pthread_mutex_lock(&philo->info->die_mtx);
 		philo->info->finish_meal++;

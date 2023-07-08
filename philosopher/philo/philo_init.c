@@ -47,10 +47,10 @@ t_info	*set_info(int ac, char **av)
 	info->t_eat = (int)ft_atoll(av[3]);
 	info->t_sleep = (int)ft_atoll(av[4]);
 	info->finish_meal = 0;
-	info->max_eat = -1;
+	info->must_eat = -1;
 	info->die_flag = 0;
 	if (ac == 6)
-		info->max_eat = (int)ft_atoll(av[5]);
+		info->must_eat = (int)ft_atoll(av[5]);
 	info = mutex_init(info);
 	if (!info)
 		return (NULL);
