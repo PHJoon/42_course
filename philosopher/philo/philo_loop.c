@@ -39,12 +39,12 @@ int	do_eat(t_ph *philo)
 	pthread_mutex_lock(&philo->info->forks_mtx[philo->fork_two]);
 	if (!print_state(philo, FORK))
 		return (put_down_forks(philo, 2));
-	print_state(philo, EAT);
-	do_time(philo->info->t_eat, philo->info);
-	philo->eat_num++;
 	pthread_mutex_lock(&philo->info->die_mtx);
 	philo->last_eat = get_time();
 	pthread_mutex_unlock(&philo->info->die_mtx);
+	print_state(philo, EAT);
+	do_time(philo->info->t_eat, philo->info);
+	philo->eat_num++;
 	if (philo->info->must_eat != -1 && philo->eat_num == philo->info->must_eat)
 	{
 		pthread_mutex_lock(&philo->info->die_mtx);
