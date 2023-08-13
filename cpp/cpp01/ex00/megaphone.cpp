@@ -6,28 +6,26 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 23:01:29 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/08/14 04:14:11 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/08/14 05:40:06 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include <cctype>
 
-int main(int argc, char *argv[])
+int main(int ac, char **av)
 {
-    if (argc == 1)
+    if (ac == 1)
         std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *" << std::endl;
     else
     {
-        for (int i = 1; i < argc; i++)
+        for (int i = 1; i < ac; i++)
         {
-            int j = 0;
-            while (argv[i][j])
+            for (int j = 0; av[i][j]; j++)
             {
-                char temp = static_cast<char>(std::toupper(argv[i][j]));
-                std::cout << temp;
-                j++;
-            }   
+                char upperChar = static_cast<char>(std::toupper(av[i][j]));
+                std::cout << upperChar;
+            }
         }
         std::cout << std::endl;
     }
