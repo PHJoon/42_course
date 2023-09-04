@@ -6,17 +6,17 @@
 #    By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/01 17:13:19 by hyungjpa          #+#    #+#              #
-#    Updated: 2023/09/04 12:25:25 by hyungjpa         ###   ########.fr        #
+#    Updated: 2023/09/04 14:39:49 by hyungjpa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCNAME = Contact PhoneBook
+SRCNAME = contact phonebook main
 
 SRC = $(addsuffix .cpp, $(SRCNAME))
 
 OBJ = $(SRC:cpp=o)
 
-NAME = megaphone
+NAME = phonebook
 
 INCLUDE = -I ./
 
