@@ -6,36 +6,36 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 14:39:55 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/09/04 15:53:46 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/10/05 15:00:28 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Contact.hpp"
 
-Contact::Contact(std::string first, std::string last, std::string nick, std::string phone, std::string darkest) {
-    this->first_name = first;
-    this->last_name = last;
-    this->nickname = nick;
-    this->phone_number = phone;
-    this->darkest_secret = darkest;
+Contact::Contact() {
+    return ;
 }
 
 Contact::~Contact() {
-    
+    return ;
 }
 
-std::string Contact::get_first_name() {
-    return (this->first_name);
+void    Contact::setFName(std::string first) {
+    this->f_name = first;
 }
-std::string Contact::get_last_name() {
-    return (this->last_name);
+
+void    Contact::setLName(std::string last) {
+    this->l_name = last;
 }
-std::string Contact::get_nickname() {
-    return (this->nickname);
+
+void    Contact::setNName(std::string nick) {
+    this->n_name = nick;
 }
-std::string Contact::get_phone_number() {
-    return (this->phone_number);
+
+void    Contact::setPNumber(std::string phone) {
+    this->p_number = phone;
 }
-std::string Contact::get_darkest_secret() {
-    return (this->darkest_secret);
+
+void    Contact::setDSecret(std::string darkest) {
+    this->d_secret = darkest;
 }

@@ -6,11 +6,11 @@
 #    By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/01 17:13:19 by hyungjpa          #+#    #+#              #
-#    Updated: 2023/09/04 14:39:49 by hyungjpa         ###   ########.fr        #
+#    Updated: 2023/10/05 14:21:49 by hyungjpa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCNAME = contact phonebook main
+SRCNAME = Contact PhoneBook main
 
 SRC = $(addsuffix .cpp, $(SRCNAME))
 
