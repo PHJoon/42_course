@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 14:39:54 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/10/05 14:58:55 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/10/05 15:13:58 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,7 @@ class Contact {
             void    setNName(std::string nick);
             void    setPNumber(std::string phone);
             void    setDSecret(std::string darkest);
-
-
+            void    showContact(void);
 };
 
 #endif

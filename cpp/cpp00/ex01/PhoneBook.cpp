@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 14:39:57 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/10/05 15:08:15 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/10/05 15:40:56 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,18 @@ void PhoneBook::Add(void) {
 }
 
 void PhoneBook::Search(void) {
+    std::cout.width(10);
+    std::cout << "index" << "|";
+    std::cout.width(10);
+    std::cout << "first name" << "|";
+    std::cout.width(10);
+    std::cout << "last name" << "|";
+    std::cout.width(10);
+    std::cout << "nickname" << "|" << std::endl;
+    
     for (int i = 0; i < this->count; i++) {
-        std::cout << i <<std::endl;
+        std::cout <<  i + 1 << std::endl;
+        this->contact[i].showContact();
     }
 }
 

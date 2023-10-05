@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 14:39:55 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/10/05 15:00:28 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/10/05 15:39:42 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,21 @@ void    Contact::setPNumber(std::string phone) {
 
 void    Contact::setDSecret(std::string darkest) {
     this->d_secret = darkest;
+}
+
+std::string truncate_text(std::string text) {
+    std::string ret;
+    if (text.length() > 9) {
+        ret = text.substr(0, 9) + ".";
+        return ret;
+    } else return text;
+}
+
+void    Contact::showContact(void) {
+    std::cout.width(10);
+    std::cout << truncate_text(this->f_name) << "|";
+    std::cout.width(10);
+    std::cout << truncate_text(this->l_name) << "|";
+    std::cout.width(10);
+    std::cout << truncate_text(this->n_name) << "|";
 }
