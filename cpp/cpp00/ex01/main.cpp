@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 14:40:02 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/10/11 05:22:13 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/10/11 08:14:45 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int main(void) {
         if (!getline(std::cin, input)) {
             std::cin.clear();
             clearerr(stdin);
-            std::cout << std::endl;
+            std::cout << std::endl << "invalid command! only accepts ADD, SEARCH and EXIT" << std::endl;
             continue ;
         }
         if (input == "ADD") {
