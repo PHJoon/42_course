@@ -6,31 +6,38 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 14:40:02 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/10/05 15:08:35 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/10/11 04:31:15 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
 
 int main(void) {
-    
     std::string input;
     PhoneBook   phonebook;
 
-
+    std::cout << "This is PhoneBook Program" << std::endl;
+    std::cout << "only accepts ADD, SEARCH and EXIT" << std::endl;
     while (true) {
-        std::getline(std::cin, input);
-
-        if (input.compare("ADD") == 0) {
-            
+        std::cout << "COMMAND > ";
+        if (!getline(std::cin, input)) {
+            std::cin.clear();
+            clearerr(stdin);
+            std::cout << std::endl;
+            continue ;
+        }
+        if (input == "ADD") {
             phonebook.Add();
-
-        } else if (input.compare("SEARCH") == 0) {
+        std::cin.ignore();
+            continue ;
+        } else if (input == "SEARCH") {
             phonebook.Search();
-            
-        } else if (input.compare("EXIT") == 0 ) {
+            continue ;
+        } else if (input == "EXIT") {
             phonebook.Exit();
             break ;
+        } else {
+            std::cout << "invalid command! only accepts ADD, SEARCH and EXIT" << std::endl;
         }
     }
     return 0;

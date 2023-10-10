@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 14:39:59 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/10/05 14:34:54 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/10/08 00:41:13 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define PHONEBOOK_HPP
 
 #include <string>
+#include <cstdio>
 #include "Contact.hpp"
 
 class PhoneBook {
