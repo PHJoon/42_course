@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 14:40:02 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/10/11 04:31:15 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/10/11 05:22:13 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,8 @@ int main(void) {
         }
         if (input == "ADD") {
             phonebook.Add();
-        std::cin.ignore();
-            continue ;
         } else if (input == "SEARCH") {
             phonebook.Search();
-            continue ;
         } else if (input == "EXIT") {
             phonebook.Exit();
             break ;

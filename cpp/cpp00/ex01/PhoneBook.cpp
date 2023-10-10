@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 14:39:57 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/10/11 04:16:45 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/10/11 05:25:04 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ void PhoneBook::Add(void) {
     std::cout << "DarkestSecret : ";
     std::cin >> darkest;
     this->contact[this->count - 1].setDSecret(darkest);
+    
+    std::cin.ignore();
     
     this->count++;
 }
