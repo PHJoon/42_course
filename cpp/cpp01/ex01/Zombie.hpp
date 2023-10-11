@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 11:13:05 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/10/11 11:15:37 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/10/11 11:29:50 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ class Zombie {
         Zombie();
         ~Zombie();
         void    announce(void);
+        void    setName(std::string name);
         
 };
 
