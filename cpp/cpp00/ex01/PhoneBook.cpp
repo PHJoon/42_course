@@ -6,20 +6,17 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 14:39:57 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/10/11 08:24:40 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/10/11 11:08:59 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
 
-PhoneBook::PhoneBook()
-{
-    this->count = 1;
+PhoneBook::PhoneBook(): count(1) {
     return;
 }
 
-PhoneBook::~PhoneBook()
-{
+PhoneBook::~PhoneBook() {
     return;
 }
 
