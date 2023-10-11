@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 04:39:34 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/10/11 09:02:04 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/10/11 12:45:47 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define ZOMBIE_HPP
 
 #include <iostream>
+#include <string>
 
 class Zombie {
     private:

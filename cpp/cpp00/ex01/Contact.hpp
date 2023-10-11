@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 14:39:54 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/10/05 15:13:58 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/10/11 12:45:11 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define CONTACT_HPP
 
 #include <iostream>
+#include <string>
 
 class Contact {
     private:
