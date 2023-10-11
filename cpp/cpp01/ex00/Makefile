@@ -6,17 +6,17 @@
 #    By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/11 04:36:19 by hyungjpa          #+#    #+#              #
-#    Updated: 2023/10/11 04:36:20 by hyungjpa         ###   ########.fr        #
+#    Updated: 2023/10/11 09:20:06 by hyungjpa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCNAME = Contact PhoneBook main
+SRCNAME = newZombie Zombie randomChump main
 
 SRC = $(addsuffix .cpp, $(SRCNAME))
 
 OBJ = $(SRC:cpp=o)
 
-NAME = phonebook
+NAME = Zombie
 
 INCLUDE = -I ./
 
