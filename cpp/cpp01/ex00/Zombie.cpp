@@ -6,14 +6,13 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 08:31:39 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/10/11 09:14:23 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/10/11 11:32:32 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
 
-Zombie::Zombie(std::string z_name) {
-    this->name = z_name;
+Zombie::Zombie(std::string z_name) : name(z_name) {
     std::cout << this->name << " was created" << std::endl;
 }
 
