@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 10:15:50 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/10/12 12:00:04 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/10/12 12:30:41 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,54 @@
 #include <fstream>
 
 int main(int ac, char **av) {
-    std::ifstream   file;
+    std::ifstream   infile;
+    std::ofstream   outfile;
     std::string line;
-    std::string content = "";
+    std::string content;
+    std::string ret;
 
     if (ac != 4) {
-        return 1;
+        std::cout << "arguments error" << std::endl;
+        return (1);
     }
-    file.open(av[1]);
-    if (file.is_open()) {
-        while (getline(file, line)) {
+    
+    infile.open(av[1]);
+    if (infile.is_open()) {
+        while (getline(infile, line)) {
             content += line;
-            if (!file.eof()) {
+            if (!infile.eof()) {
                 content += "\n";
             }
         }
-        std::cout << content << std::endl;
-
-        std::string s1(av[2]);
-        std::string s2(av[3]);
-        
-
+        infile.close();
     } else {
-        // error
+        std::cout << "file open error" << std::endl;
+        return (1);
     }
-    return 0;
+    
+    std::string filename(av[1]);
+    std::string s1(av[2]);
+    std::string s2(av[3]);
+
+
+    for (size_t i = 0; i < content.length(); i++) {
+        std::string temp = content.substr(i, s1.length());
+        if (temp == s1) {
+            ret += s2;
+            i += s1.length() - 1;
+        } else {
+            ret += content[i];
+        }
+    }
+
+    outfile.open(filename + ".replace");
+    if (outfile.is_open()) {
+        outfile << ret;
+        outfile.close();
+    } else {
+        std::cout << "file open error" << std::endl;
+        return (1);
+    }
+
+    return (0);
 }
