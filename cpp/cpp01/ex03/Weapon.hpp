@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 12:42:05 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/10/11 16:11:34 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/10/12 09:36:56 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,10 @@ private:
     std::string type;
 public:
     Weapon();
+    Weapon(std::string type);
     ~Weapon();
-    std::string& getType(void);
-    void    setType(std::string& type);
+    const std::string   &getType(void);
+    void    setType(const std::string &type);
 };
 
 
