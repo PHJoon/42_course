@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 23:01:29 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/08/14 05:40:06 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/10/14 03:52:01 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ int main(int ac, char **av)
     {
         for (int i = 1; i < ac; i++)
         {
-            for (int j = 0; av[i][j]; j++)
-            {
-                char upperChar = static_cast<char>(std::toupper(av[i][j]));
-                std::cout << upperChar;
+            std::string str(av[i]);
+            for (int j = 0; str[j]; j++) {
+                str[j] = std::toupper(str[j]);
             }
+            std::cout << str;
         }
         std::cout << std::endl;
     }

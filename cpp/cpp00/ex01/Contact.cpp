@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 14:39:55 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/10/05 15:39:42 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/10/14 04:46:35 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,38 +21,41 @@ Contact::~Contact() {
 }
 
 void    Contact::setFName(std::string first) {
-    this->f_name = first;
+    _f_name = first;
 }
 
 void    Contact::setLName(std::string last) {
-    this->l_name = last;
+    _l_name = last;
 }
 
 void    Contact::setNName(std::string nick) {
-    this->n_name = nick;
+    _n_name = nick;
 }
 
 void    Contact::setPNumber(std::string phone) {
-    this->p_number = phone;
+    _p_number = phone;
 }
 
 void    Contact::setDSecret(std::string darkest) {
-    this->d_secret = darkest;
+    _d_secret = darkest;
 }
 
-std::string truncate_text(std::string text) {
-    std::string ret;
-    if (text.length() > 9) {
-        ret = text.substr(0, 9) + ".";
-        return ret;
-    } else return text;
+std::string const&    Contact::getFName(void) const {
+    return _f_name;
 }
 
-void    Contact::showContact(void) {
-    std::cout.width(10);
-    std::cout << truncate_text(this->f_name) << "|";
-    std::cout.width(10);
-    std::cout << truncate_text(this->l_name) << "|";
-    std::cout.width(10);
-    std::cout << truncate_text(this->n_name) << "|";
+std::string const&    Contact::getLName(void) const {
+    return _l_name;
+}
+
+std::string const&    Contact::getNName(void) const {
+    return _n_name;
+}
+
+std::string const&    Contact::getPNumber(void) const {
+    return _p_number;
+}
+
+std::string const&    Contact::getDSecret(void) const {
+    return _d_secret;
 }
