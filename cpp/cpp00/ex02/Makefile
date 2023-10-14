@@ -6,17 +6,17 @@
 #    By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/01 17:13:19 by hyungjpa          #+#    #+#              #
-#    Updated: 2023/10/05 14:21:49 by hyungjpa         ###   ########.fr        #
+#    Updated: 2023/10/15 01:44:14 by hyungjpa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCNAME = Contact PhoneBook main
+SRCNAME = Account tests
 
 SRC = $(addsuffix .cpp, $(SRCNAME))
 
 OBJ = $(SRC:cpp=o)
 
-NAME = phonebook
+NAME = account
 
 INCLUDE = -I ./
 
