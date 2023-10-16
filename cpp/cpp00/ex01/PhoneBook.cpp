@@ -6,13 +6,13 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 14:39:57 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/10/14 06:01:10 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/10/16 09:24:27 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
 
-PhoneBook::PhoneBook(): _count(1) {
+PhoneBook::PhoneBook(): _count(0) {
     return;
 }
 
@@ -49,7 +49,7 @@ void PhoneBook::Add(void)
     std::string phone;
     std::string darkest;
 
-    if (_count == 9)
+    if (_count == 8)
     {
         for (int i = 0; i < 7; i++)
         {
@@ -69,11 +69,11 @@ void PhoneBook::Add(void)
     std::cout << "DarkestSecret : ";
     check_input(&darkest, 5);
 
-    _contact[_count - 1].setFName(first);
-    _contact[_count - 1].setLName(last);
-    _contact[_count - 1].setNName(nick);
-    _contact[_count - 1].setPNumber(phone);
-    _contact[_count - 1].setDSecret(darkest);
+    _contact[_count].setFName(first);
+    _contact[_count].setLName(last);
+    _contact[_count].setNName(nick);
+    _contact[_count].setPNumber(phone);
+    _contact[_count].setDSecret(darkest);
     _count++;
 }
 
@@ -97,14 +97,14 @@ void PhoneBook::Search(void)
     std::cout << std::setw(10) << "nickname" << "|" << std::endl;
     std::cout << "--------------------------------------------------" << std::endl;
 
-    for (int i = 1; i < _count; i++)
+    for (int i = 0; i < _count; i++)
     {
         std::cout.width(10);
-        std::cout << i << "|";
+        std::cout << i + 1 << "|";
 
-        truncate_text(_contact[i - 1].getFName());
-        truncate_text(_contact[i - 1].getLName());
-        truncate_text(_contact[i - 1].getNName());
+        truncate_text(_contact[i].getFName());
+        truncate_text(_contact[i].getLName());
+        truncate_text(_contact[i].getNName());
 
         std::cout << std::endl;
     }
@@ -117,7 +117,7 @@ void PhoneBook::Search(void)
             std::cin.clear();
             clearerr(stdin);
             std::cout << "invalid index" << std::endl;
-            if (_count == 1) {
+            if (_count == 0) {
                 std::cout << "there is no contact in phonebook" << std::endl;
             }
             break ;
@@ -126,14 +126,14 @@ void PhoneBook::Search(void)
         std::istringstream iss(input);
         int number;
 
-        if (_count == 1) {
+        if (_count == 0) {
             std::cout << "invalid index" << std::endl;
             std::cout << "there is no contact in phonebook" << std::endl;
         } else {
             if (!(iss >> number)) {
                 std::cout << "invalid index" << std::endl;
             } else {
-                if (number > 0 && number < _count) {
+                if (number > 0 && number <= _count) {
                     std::cout << "First Name : " << _contact[number - 1].getFName() << std::endl;
                     std::cout << "Last Name : " << _contact[number - 1].getLName() << std::endl;
                     std::cout << "Nick Name : " << _contact[number - 1].getNName() << std::endl;
