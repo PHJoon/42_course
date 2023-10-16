@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 12:32:40 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/10/16 12:50:58 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/10/16 16:52:42 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,17 +48,9 @@ void    Harl::complain(std::string level) {
             break ;
         }
     }
-
-    void    (Harl::*fp[4])(void);
-
-    fp[0] = Harl::debug();
-    
-    void    (Harl::*f[4])(void) = {
-        &Harl::debug,
-        &Harl::info,
-        &Harl::warning,
-        &Harl::error,
+    void    (Harl::*fp[4])(void) = {
+        &Harl::debug, &Harl::info, &Harl::warning, &Harl::error
     };
-    f[index]();
 
+    (this->*fp[index])();
 }
