@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 12:32:40 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/10/12 13:24:37 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/10/15 04:54:24 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,11 @@ void    Harl::error(void) {
 
 
 void    Harl::complain(std::string level) {
+    void    (Harl::*f[4])(void) = {
+        &Harl::debug,
+        &Harl::info,
+        &Harl::warning,
+        &Harl::error,
+    };
 
 }
