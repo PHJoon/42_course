@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 12:32:40 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/10/15 04:54:24 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/10/16 12:50:58 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,26 @@ void    Harl::error(void) {
 
 
 void    Harl::complain(std::string level) {
+
+    std::string complain_array[4] = {"debug", "info", "warning", "error"};
+    int index = 0;
+    for (int i = 0; i < 4; i++) {
+        if (complain_array[i] == level) {
+            index = i;
+            break ;
+        }
+    }
+
+    void    (Harl::*fp[4])(void);
+
+    fp[0] = Harl::debug();
+    
     void    (Harl::*f[4])(void) = {
         &Harl::debug,
         &Harl::info,
         &Harl::warning,
         &Harl::error,
     };
+    f[index]();
 
 }
