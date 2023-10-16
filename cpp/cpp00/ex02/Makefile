@@ -6,7 +6,7 @@
 #    By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/01 17:13:19 by hyungjpa          #+#    #+#              #
-#    Updated: 2023/10/15 01:44:14 by hyungjpa         ###   ########.fr        #
+#    Updated: 2023/10/16 11:05:35 by hyungjpa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,15 +20,15 @@ NAME = account
 
 INCLUDE = -I ./
 
-CFLAGS = -Wall -Wextra -Werror -std=c++98
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 all : $(NAME)
 
 $(NAME) : $(OBJ)
-		$(CXX) $(CFLAGS) $(INCLUDE) $^ -o $@
+		$(CXX) $(CXXFLAGS) $(INCLUDE) $^ -o $@
 
 %.o : %.cpp
-		$(CXX) $(CFLAGS) $(INCLUDE) -c $< -o $@
+		$(CXX) $(CXXFLAGS) $(INCLUDE) -c $< -o $@
 
 clean :
 		rm -rf $(OBJ)
