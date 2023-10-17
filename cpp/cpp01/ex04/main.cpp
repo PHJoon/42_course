@@ -6,19 +6,20 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 10:15:50 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/10/12 12:30:41 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/10/17 12:22:47 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include <fstream>
+#include <string>
 
 int main(int ac, char **av) {
     std::ifstream   infile;
     std::ofstream   outfile;
     std::string line;
-    std::string content;
-    std::string ret;
+    std::string content = "";
+    std::string ret = "";
 
     if (ac != 4) {
         std::cout << "arguments error" << std::endl;
@@ -35,7 +36,7 @@ int main(int ac, char **av) {
         }
         infile.close();
     } else {
-        std::cout << "file open error" << std::endl;
+        std::cout << "infile open error" << std::endl;
         return (1);
     }
     
@@ -59,7 +60,7 @@ int main(int ac, char **av) {
         outfile << ret;
         outfile.close();
     } else {
-        std::cout << "file open error" << std::endl;
+        std::cout << "outfile open error" << std::endl;
         return (1);
     }
 

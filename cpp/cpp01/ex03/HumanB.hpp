@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 08:43:04 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/10/12 09:57:44 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/10/17 11:18:37 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 
 class HumanB {
     private:
-        std::string name;
-        Weapon  *weapon;
+        std::string _name;
+        Weapon  *_weapon;
     public:
         HumanB(std::string name);
         ~HumanB();

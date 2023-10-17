@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 12:33:33 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/10/12 00:46:22 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/10/17 10:28:40 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,6 @@ int main(void) {
     std::cout << "The value of the str       : " << str << std::endl;
     std::cout << "The value of the stringPTR : " << *stringPTR << std::endl;
     std::cout << "The value of the stringREF : " << stringREF << std::endl;
+
+    return (0);
 }

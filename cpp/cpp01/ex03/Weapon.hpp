@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 12:42:05 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/10/12 09:36:56 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/10/17 10:32:22 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 class Weapon {
 private:
-    std::string type;
+    std::string _type;
 public:
     Weapon();
     Weapon(std::string type);

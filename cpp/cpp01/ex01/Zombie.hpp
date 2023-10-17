@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 11:13:05 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/10/11 12:45:56 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/10/17 10:23:04 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 class Zombie {
     private:
-        std::string name;
+        std::string _name;
     public:
         Zombie();
         ~Zombie();
