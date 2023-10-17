@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 16:55:21 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/10/17 03:33:03 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/10/17 13:32:45 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,13 +68,13 @@ void    Harl::complain(std::string level) {
     };
 
     switch (index) {
-        case (0):
+        case 0:
             (this->*fp[0])();
-        case (1):
+        case 1:
             (this->*fp[1])();
-        case (2):
+        case 2:
             (this->*fp[2])();
-        case (3):
+        case 3:
             (this->*fp[3])();
             break ;
         default:
