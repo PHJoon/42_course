@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 10:15:50 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/10/17 12:22:47 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/10/17 13:28:18 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,8 @@ int main(int ac, char **av) {
         }
     }
 
-    outfile.open(filename + ".replace");
+    filename += ".replace";
+    outfile.open(filename);
     if (outfile.is_open()) {
         outfile << ret;
         outfile.close();
