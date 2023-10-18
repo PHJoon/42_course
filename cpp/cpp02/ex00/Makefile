@@ -6,7 +6,7 @@
 #    By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/11 04:36:19 by hyungjpa          #+#    #+#              #
-#    Updated: 2023/10/17 15:28:04 by hyungjpa         ###   ########.fr        #
+#    Updated: 2023/10/18 11:58:11 by hyungjpa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ SRC = $(addsuffix .cpp, $(SRCNAME))
 
 OBJ = $(SRC:cpp=o)
 
-NAME = fixed
+NAME = a.out
 
 INCLUDE = -I ./
 

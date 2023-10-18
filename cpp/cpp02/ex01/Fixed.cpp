@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 15:18:52 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/10/18 15:19:22 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/10/18 16:10:48 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,17 @@
 Fixed::Fixed(void): _fixed_point_num(0)
 {
     std::cout << "Default constructor called" << std::endl;
+}
+
+Fixed::Fixed(const int fixed_point_num): _fixed_point_num(fixed_point_num)
+{
+    std::cout << "Int constructor called" << std::endl;
+}
+
+Fixed::Fixed(const float fixed_point_num): _fixed_point_num(fixed_point_num)
+{
+    
+    std::cout << "Float constructor called" << std::endl;
 }
 
 Fixed::Fixed(const Fixed& src)
@@ -38,11 +49,25 @@ Fixed& Fixed::operator=(Fixed const& rhs)
     return *this;
 }
 
+float Fixed::toFloat(void) const 
+{
+    return _fixed_point_num;
+}
+int Fixed::toInt(void) const
+{
+    return _fixed_point_num;
+}
+
 int Fixed::getRawBits(void) const {
-    std::cout << "getRawBits member function called" << std::endl;
     return _fixed_point_num;
 }
 
 void Fixed::setRawBits(int const raw) {
     _fixed_point_num = raw;
+}
+
+std::ostream& operator << (std::ostream &out, const Fixed &fixed)
+{
+    out << fixed.getRawBits();
+    return out;
 }

@@ -6,17 +6,17 @@
 #    By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/11 04:36:19 by hyungjpa          #+#    #+#              #
-#    Updated: 2023/10/17 03:21:06 by hyungjpa         ###   ########.fr        #
+#    Updated: 2023/10/18 11:58:00 by hyungjpa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCNAME = Harl main
+SRCNAME = Fixed main
 
 SRC = $(addsuffix .cpp, $(SRCNAME))
 
 OBJ = $(SRC:cpp=o)
 
-NAME = harlFilter
+NAME = a.out
 
 INCLUDE = -I ./
 
