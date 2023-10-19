@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 15:18:54 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/10/18 15:18:56 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/10/19 09:59:29 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ class Fixed
         Fixed(const Fixed& src);
         ~Fixed(void);
         Fixed& operator=(Fixed const& rhs);
+
         int getRawBits(void) const;
         void    setRawBits(int const raw);
 };
