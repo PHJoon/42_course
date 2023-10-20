@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 15:18:56 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/10/20 09:42:49 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/10/20 10:00:42 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,14 @@ int main(void)
         std::cout << "c와 d는 같다" << std::endl;
     }
     
-    
+    std::cout << "----for문----" << std::endl;
 
+    float ret = 0.0f;
+    for (int i = 0; i < 10000; i++) {
+        ret += 0.1f;
+    }
 
+    std::cout << ret << std::endl;
 
     return 0;
 }
