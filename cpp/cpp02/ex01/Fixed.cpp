@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 15:18:52 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/10/19 13:18:55 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/10/20 09:19:02 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ Fixed::Fixed(const int fixed_point_num): _fixed_point_num(fixed_point_num << _fr
     std::cout << "Int constructor called" << std::endl;
 }
 
-Fixed::Fixed(const float fixed_point_num): _fixed_point_num(roundf(fixed_point_num * (1 << _fractional_bits)))
+Fixed::Fixed(const float fixed_point_num): _fixed_point_num(static_cast<int>(roundf(fixed_point_num * (1 << _fractional_bits))))
 {
     std::cout << "Float constructor called" << std::endl;
 }
