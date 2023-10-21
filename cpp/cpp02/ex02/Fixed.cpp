@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 15:18:52 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/10/21 15:53:44 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/10/21 16:23:20 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,10 @@ Fixed::Fixed(const float fixed_point_num): _fixed_point_num(static_cast<int>(rou
     std::cout << "Float constructor called" << std::endl;
 }
 
-Fixed::Fixed(const Fixed& src): _fixed_point_num(src._fixed_point_num)
+Fixed::Fixed(const Fixed& src)
 {
     std::cout << "Copy constructor called" << std::endl;
+    _fixed_point_num = src.getRawBits();
 }
 
 Fixed::~Fixed(void)
