@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 10:44:15 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/10/21 18:12:10 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/10/22 16:35:36 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,11 @@ class ClapTrap
         void    setHP(unsigned int hp);
         void    setEP(unsigned int ep);
         void    setAD(unsigned int ad);
+        
+        // void    setName(const std::string& name);
+        // void    setHP(const unsigned int hp);
+        // void    setEP(const unsigned int ep);
+        // void    setAD(const unsigned int ad);
 
         void    attack(const std::string& target);
         void    takeDamage(unsigned int amount);
