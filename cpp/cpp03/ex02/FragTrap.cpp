@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 12:28:27 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/10/24 12:56:58 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/10/24 14:41:08 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ FragTrap::FragTrap(std::string name)
     this->_attack_damage = 30;
 }
 
-FragTrap::FragTrap(const FragTrap& src)
+FragTrap::FragTrap(const FragTrap& src): ClapTrap()
 {
     std::cout << "FragTrap Copy constructor called" << std::endl;
     this->_name = src._name;

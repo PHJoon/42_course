@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 13:22:00 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/10/24 14:07:17 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/10/24 14:41:53 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ DiamondTrap::DiamondTrap(std::string name): ClapTrap(name + "_clap_name")
     this->_attack_damage = FragTrap::_attack_damage; 
 }
 
-DiamondTrap::DiamondTrap(const DiamondTrap& src)
+DiamondTrap::DiamondTrap(const DiamondTrap& src): ClapTrap(), ScavTrap(), FragTrap()
 {
     std::cout << "DiamondTrap Copy constructor called" << std::endl;
     this->_name = src._name;

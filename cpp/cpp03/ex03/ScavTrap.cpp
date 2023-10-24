@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 12:11:45 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/10/24 11:16:30 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/10/24 14:42:16 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ ScavTrap::ScavTrap(std::string name)
     this->_attack_damage = 20;
 }
 
-ScavTrap::ScavTrap(const ScavTrap& src)
+ScavTrap::ScavTrap(const ScavTrap& src): ClapTrap()
 {
     std::cout << "ScavTrap Copy constructor called" << std::endl;
     this->_name = src._name;

@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 10:44:36 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/10/24 14:24:22 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/10/24 14:42:29 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,6 @@
 #include "ScavTrap.hpp"
 #include "FragTrap.hpp"
 #include "DiamondTrap.hpp"
-
-void    a(void)
-{
-    system("leaks a.out");
-}
-
 
 int main(void) 
 {
