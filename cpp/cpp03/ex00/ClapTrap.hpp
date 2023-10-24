@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 10:44:15 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/10/20 11:38:44 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/10/24 11:06:07 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,10 @@ class ClapTrap
         ~ClapTrap(void);
         ClapTrap& operator=(ClapTrap const& rhs);
 
+        void    attack(const std::string& target);
+        void    takeDamage(unsigned int amount);
+        void    beRepaired(unsigned int amount);
+
         std::string getName(void) const;
         unsigned int getHP(void) const;
         unsigned int getEP(void) const;
@@ -40,10 +44,6 @@ class ClapTrap
         void    setHP(unsigned int hp);
         void    setEP(unsigned int ep);
         void    setAD(unsigned int ad);
-
-        void    attack(const std::string& target);
-        void    takeDamage(unsigned int amount);
-        void    beRepaired(unsigned int amount);
 };
 
 #endif

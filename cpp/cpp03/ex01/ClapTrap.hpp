@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 10:44:15 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/10/22 16:35:36 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/10/24 11:10:38 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 class ClapTrap
 {
-    private:
+    protected:
         std::string _name;
         unsigned int _hit_points;
         unsigned int _energy_points;
@@ -28,8 +28,12 @@ class ClapTrap
         ClapTrap(void);
         ClapTrap(std::string name);
         ClapTrap(const ClapTrap& src);
-        ~ClapTrap(void);
+        virtual ~ClapTrap(void);
         ClapTrap& operator=(ClapTrap const& rhs);
+
+        virtual void    attack(const std::string& target);
+        void    takeDamage(unsigned int amount);
+        void    beRepaired(unsigned int amount);
 
         std::string getName(void) const;
         unsigned int getHP(void) const;
@@ -40,15 +44,6 @@ class ClapTrap
         void    setHP(unsigned int hp);
         void    setEP(unsigned int ep);
         void    setAD(unsigned int ad);
-        
-        // void    setName(const std::string& name);
-        // void    setHP(const unsigned int hp);
-        // void    setEP(const unsigned int ep);
-        // void    setAD(const unsigned int ad);
-
-        void    attack(const std::string& target);
-        void    takeDamage(unsigned int amount);
-        void    beRepaired(unsigned int amount);
 };
 
 #endif
