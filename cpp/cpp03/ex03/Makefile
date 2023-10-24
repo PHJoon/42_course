@@ -6,11 +6,11 @@
 #    By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/11 04:36:19 by hyungjpa          #+#    #+#              #
-#    Updated: 2023/10/24 12:28:09 by hyungjpa         ###   ########.fr        #
+#    Updated: 2023/10/24 14:14:59 by hyungjpa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCNAME = ClapTrap ScavTrap FragTrap main
+SRCNAME = ClapTrap ScavTrap FragTrap DiamondTrap main
 
 SRC = $(addsuffix .cpp, $(SRCNAME))
 
