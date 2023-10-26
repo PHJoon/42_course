@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 08:23:49 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/10/25 11:14:01 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/10/26 12:23:18 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@ int main(void)
     delete i;
 
     // Animal *array_ptr = new Animal[10];
-    Animal *array_ptr[10];
+    Animal *array_ptr[4];
     Cat *c_ptr;
     Dog *d_ptr;
 
-    for (int k = 0; k < 10; k++)
+    for (int k = 0; k < 4; k++)
     {
-        if (k > 4)
+        if (k > 1)
         {
             array_ptr[k] = new Cat(); 
         }
@@ -40,12 +40,12 @@ int main(void)
         }
     }
     
-    for (int k = 0; k < 10; k++)
+    for (int k = 0; k < 4; k++)
     {
         std::cout << "----- < " << k << " > -----" << std::endl;
         std::cout << array_ptr[k]->getType() << " " << std::endl;
         array_ptr[k]->makeSound();
-        if (k > 4)
+        if (k > 1)
         {
             c_ptr = dynamic_cast<Cat *>(array_ptr[k]);
             c_ptr->show_brain();
@@ -58,11 +58,21 @@ int main(void)
         std::cout << std::endl;
     }
 
-    for (int k = 0; k < 10; k++)
+    for (int k = 0; k < 4; k++)
     {
         std::cout << "--- < " << k << " > --- Destructor ---" << std::endl;
         delete array_ptr[k];
     }
 
+    std::cout << std::endl;
+    std::cout << " --- brain memory test ---" << std::endl;
+    Cat *x = new Cat();
+    Cat p = Cat();
+    Cat k = Cat(p);
+    Cat l;
+    l = k;
+    
+    delete x;
+    
     return 0;
 }

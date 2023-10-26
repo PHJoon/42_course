@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 08:23:49 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/10/25 09:53:51 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/10/26 12:11:54 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,9 @@ int main(void)
     j->makeSound();
     meta->makeSound();
     
+    delete meta;
+    delete i;
+    delete j;
     std::cout << "----- Wrong Animal, Cat -----" << std::endl;
     const WrongAnimal *w_meta = new WrongAnimal();
     const WrongAnimal *k = new WrongCat();
@@ -35,9 +38,6 @@ int main(void)
     k->makeSound();
     w_meta->makeSound();
 
-    delete meta;
-    delete i;
-    delete j;
     delete w_meta;
     delete k;
 

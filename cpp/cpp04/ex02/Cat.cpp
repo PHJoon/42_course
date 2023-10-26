@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 08:34:37 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/10/25 10:55:17 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/10/26 12:23:55 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ Cat::Cat(const Cat& src): Animal()
 {
     std::cout << "Cat Copy constructor called" << std::endl;
     _type = src._type;
-    _brain = src._brain;
+    _brain = new Brain();
+    *_brain = *(src._brain);
 }
 
 Cat::~Cat(void)
@@ -38,7 +39,7 @@ Cat& Cat::operator=(Cat const& rhs)
     if (this != &rhs)
     {
         _type = rhs._type;
-        _brain = rhs._brain;
+        *_brain = *(rhs._brain);
     }
     return *this;
 }

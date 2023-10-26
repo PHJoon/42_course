@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 08:34:42 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/10/25 10:55:39 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/10/26 12:21:38 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ Dog::Dog(const Dog& src): Animal()
 {
     std::cout << "Dog Copy constructor called" << std::endl;
     _type = src._type;
-    _brain = src._brain;
+    _brain = new Brain();
+    *_brain = *(src._brain);
 }
 
 Dog::~Dog(void)
@@ -38,7 +39,7 @@ Dog& Dog::operator=(Dog const& rhs)
     if (this != &rhs)
     {
         _type = rhs._type;
-        _brain = rhs._brain;
+        *_brain = *(rhs._brain);
     }
     return *this;
 }
