@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 15:07:37 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/10/25 15:15:42 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/10/26 10:54:05 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,24 @@
 
 Cure::Cure(void)
 {
-    std::cout << "Cure Default constructor called" << std::endl;
+    // std::cout << "Cure Default constructor called" << std::endl;
     _type = "cure";
 }
 
 Cure::Cure(const Cure& src): AMateria()
 {
-    std::cout << "Cure Copy constructor called" << std::endl;
+    // std::cout << "Cure Copy constructor called" << std::endl;
     _type = src._type;
 }
 
 Cure::~Cure(void)
 {
-    std::cout << "Cure Destructor called" << std::endl;
+    // std::cout << "Cure Destructor called" << std::endl;
 }
 
 Cure& Cure::operator=(Cure const& rhs)
 {
-    std::cout << "Cure Copy assingment operator called" << std::endl;
+    // std::cout << "Cure Copy assingment operator called" << std::endl;
     if (this != &rhs)
     {
         _type = rhs._type;
@@ -41,7 +41,8 @@ Cure& Cure::operator=(Cure const& rhs)
 
 AMateria *Cure::clone() const
 {
-
+    AMateria *ptr = new Cure();
+    return ptr;
 }
 
 void Cure::use(ICharacter &target)

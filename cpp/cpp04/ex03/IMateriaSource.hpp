@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 14:36:26 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/10/25 15:20:28 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/10/26 11:28:51 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 # define IMateriaSource_HPP
 
 # include <string>
-# include "AMateria.hpp"
+
+class AMateria;
 
 class IMateriaSource
 {

@@ -6,16 +6,16 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 12:07:17 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/10/25 13:00:05 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/10/26 11:28:58 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ICharater_HPP
 # define ICharater_HPP
 
-# include <iostream>
 # include <string>
-# include "AMateria.hpp"
+
+class AMateria;
 
 class ICharacter
 {
