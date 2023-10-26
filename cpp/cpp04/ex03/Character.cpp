@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 12:51:25 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/10/26 11:56:16 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/10/26 15:19:39 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ Character::~Character(void)
     for (int i = 0; i < 4; i++)
     {
         delete _inventory[i];
+        _inventory[i] = NULL;
     }
 }
 

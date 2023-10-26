@@ -6,11 +6,11 @@
 #    By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/11 04:36:19 by hyungjpa          #+#    #+#              #
-#    Updated: 2023/10/26 11:25:04 by hyungjpa         ###   ########.fr        #
+#    Updated: 2023/10/26 15:56:14 by hyungjpa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCNAME = AMateria Character Cure Ice MateriaSource main
+SRCNAME = AMateria Character Cure Ice MateriaSource main Floor
 
 SRC = $(addsuffix .cpp, $(SRCNAME))
 
