@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 16:17:20 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/10/26 16:21:59 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/10/27 15:29:06 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,15 @@ class Bureaucrat
         Bureaucrat(const Bureaucrat& src);
         virtual ~Bureaucrat(void);
         Bureaucrat& operator=(Bureaucrat const& rhs);
+
+        const   std::string &getName(void) const;
+        const   int *getGrade(void) const;
+
+        class GradeTooHighException: public std::exception
+        {
+            public:
+                const char *what()
+        }
 };
 
 #endif
