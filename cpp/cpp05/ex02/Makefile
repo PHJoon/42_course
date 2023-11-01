@@ -6,11 +6,11 @@
 #    By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/11 04:36:19 by hyungjpa          #+#    #+#              #
-#    Updated: 2023/10/25 10:40:44 by hyungjpa         ###   ########.fr        #
+#    Updated: 2023/11/01 17:56:03 by hyungjpa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCNAME = Animal Dog Cat Brain main
+SRCNAME = Bureaucrat AForm ShrubberyCreationForm RobotomyRequestForm PresidentailPardonForm main
 
 SRC = $(addsuffix .cpp, $(SRCNAME))
 
