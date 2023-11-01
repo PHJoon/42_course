@@ -6,11 +6,12 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 16:17:17 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/11/01 15:34:34 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/11/01 15:34:27 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 Bureaucrat::Bureaucrat(void): _name("default"), _grade(150)
 {
@@ -72,6 +73,16 @@ void Bureaucrat::decrement(void)
     else {
         std::cout << _name << "'s grade decrement" << std::endl;
         _grade += 1;
+    }
+}
+
+void    Bureaucrat::signForm(Form *form)
+{
+    if (_grade <= form->getSignGrade()) {
+        std::cout << _name << " signed " << form->getName() << std::endl;
+    } else {
+        std::cout << _name << " couldn't signed " << form->getName() << " because form's sign grade is " 
+        << form->getSignGrade() << " and Bureaucrat's grade is " << _grade << "." << std::endl;
     }
 }
 
