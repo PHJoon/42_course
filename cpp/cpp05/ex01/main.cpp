@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 16:17:22 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/11/02 13:05:47 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/11/02 15:49:59 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 #include "Form.hpp"
 #include <iostream>
 
-void a()
-{
-    system("leaks a.out");
-}
+// void a()
+// {
+//     system("leaks a.out");
+// }
 
 int main()
 {
-    atexit(a);
+    // atexit(a);
     std::cout << "--- TEST START ---" << std::endl << std::endl;
 
     std::cout << "--- name: FormA / s_grade: 151 / e_grade: 1 ---" << std::endl;

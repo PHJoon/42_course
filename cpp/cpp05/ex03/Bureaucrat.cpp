@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 16:17:17 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/11/02 14:04:40 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/11/02 14:03:51 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,6 @@ void    Bureaucrat::executeForm(AForm const &aForm)
     {
         std::cerr << _name << " couldn't executed " << aForm.getName() << " because " << e.what() << std::endl;
     }
-    
 }
 
 const char *Bureaucrat::GradeTooHighException::what(void) const throw()

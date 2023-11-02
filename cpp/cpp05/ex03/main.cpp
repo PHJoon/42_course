@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 16:17:22 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/11/02 15:49:46 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/11/02 15:49:38 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "PresidentialPardonForm.hpp"
+#include "Intern.hpp"
 #include <iostream>
 
 // void a()
@@ -30,9 +31,12 @@ int main()
     std::cout << "--- name: A / grade: 1 ---" << std::endl;
     try
     {
-        AForm *sh = new ShrubberyCreationForm("Home");
-        AForm *rb = new RobotomyRequestForm("Secretary");
-        AForm *pr = new PresidentialPardonForm("Minister");
+        Intern  someRandomIntern;
+        
+        AForm *sh = someRandomIntern.makeForm("shrubbery creation", "Home");
+        AForm *rb = someRandomIntern.makeForm("robotomy request", "Bender");
+        AForm *pr = someRandomIntern.makeForm("presidential pardon", "Minister");
+        AForm *no = someRandomIntern.makeForm("invalid form", "nothing");
 
         Bureaucrat *a = new Bureaucrat("A", 1);
         
@@ -41,22 +45,33 @@ int main()
         std::cout << *sh << std::endl;
         std::cout << *rb << std::endl;
         std::cout << *pr << std::endl;
+        if (!no) std::cout << "(null)" << std::endl;
+        else std::cout << *no << std::endl;
+        
         a->signForm(*sh);
         a->signForm(*rb);
         a->signForm(*pr);
+        if (!no) std::cout << "(null)" << std::endl;
+        else a->signForm(*no);
+        
         std::cout << *sh << std::endl;
         std::cout << *rb << std::endl;
         std::cout << *pr << std::endl;
+        if (!no) std::cout << "(null)" << std::endl;
+        else std::cout << *no << std::endl;
 
         a->executeForm(*sh);
         a->executeForm(*rb);
         a->executeForm(*pr);
+        if (!no) std::cout << "(null)" << std::endl;
+        else a->executeForm(*no);
 
         std::cout << "--- end ---" << std::endl << std::endl;
 
         delete sh;
         delete rb;
         delete pr;
+        delete no;
         delete a;
     }
     catch(const std::exception& e)
@@ -64,35 +79,50 @@ int main()
         std::cerr << e.what() << '\n';
     }
     
-    // std::cout << std::endl << "--- name: A / grade: 25 ---" << std::endl;
+    // std::cout << "--- name: A / grade: 25 ---" << std::endl;
     // try
     // {
-    //     AForm *sh = new ShrubberyCreationForm("Home");
-    //     AForm *rb = new RobotomyRequestForm("Secretary");
-    //     AForm *pr = new PresidentialPardonForm("Minister");
+    //     Intern  someRandomIntern;
+        
+    //     AForm *sh = someRandomIntern.makeForm("shrubbery creation", "Home");
+    //     AForm *rb = someRandomIntern.makeForm("robotomy request", "Bender");
+    //     AForm *pr = someRandomIntern.makeForm("presidential pardon", "Minister");
+    //     AForm *no = someRandomIntern.makeForm("invalid form", "nothing");
 
     //     Bureaucrat *a = new Bureaucrat("A", 25);
         
     //     std::cout << std::endl << "--- main ---" << std::endl;
+
+    //     std::cout << *sh << std::endl;
+    //     std::cout << *rb << std::endl;
+    //     std::cout << *pr << std::endl;
+    //     if (!no) std::cout << "(null)" << std::endl;
+    //     else std::cout << *no << std::endl;
+        
+    //     a->signForm(*sh);
+    //     a->signForm(*rb);
+    //     a->signForm(*pr);
+    //     if (!no) std::cout << "(null)" << std::endl;
+    //     else a->signForm(*no);
         
     //     std::cout << *sh << std::endl;
     //     std::cout << *rb << std::endl;
     //     std::cout << *pr << std::endl;
-    //     a->signForm(*sh);
-    //     a->signForm(*rb);
-    //     a->signForm(*pr);
-    //     std::cout << *sh << std::endl;
-    //     std::cout << *rb << std::endl;
-    //     std::cout << *pr << std::endl;
+    //     if (!no) std::cout << "(null)" << std::endl;
+    //     else std::cout << *no << std::endl;
 
     //     a->executeForm(*sh);
     //     a->executeForm(*rb);
     //     a->executeForm(*pr);
-
+    //     if (!no) std::cout << "(null)" << std::endl;
+    //     else a->executeForm(*no);
+        
     //     std::cout << "--- end ---" << std::endl << std::endl;
+
     //     delete sh;
     //     delete rb;
     //     delete pr;
+    //     delete no;
     //     delete a;
     // }
     // catch(const std::exception& e)
@@ -100,12 +130,15 @@ int main()
     //     std::cerr << e.what() << '\n';
     // }
     
-    // std::cout << std::endl << "--- name: A / grade: 72 ---" << std::endl;
+    // std::cout << "--- name: A / grade: 72 ---" << std::endl;
     // try
     // {
-    //     AForm *sh = new ShrubberyCreationForm("Home");
-    //     AForm *rb = new RobotomyRequestForm("Secretary");
-    //     AForm *pr = new PresidentialPardonForm("Minister");
+    //     Intern  someRandomIntern;
+        
+    //     AForm *sh = someRandomIntern.makeForm("shrubbery creation", "Home");
+    //     AForm *rb = someRandomIntern.makeForm("robotomy request", "Bender");
+    //     AForm *pr = someRandomIntern.makeForm("presidential pardon", "Minister");
+    //     AForm *no = someRandomIntern.makeForm("invalid form", "nothing");
 
     //     Bureaucrat *a = new Bureaucrat("A", 72);
         
@@ -114,22 +147,33 @@ int main()
     //     std::cout << *sh << std::endl;
     //     std::cout << *rb << std::endl;
     //     std::cout << *pr << std::endl;
+    //     if (!no) std::cout << "(null)" << std::endl;
+    //     else std::cout << *no << std::endl;
+        
     //     a->signForm(*sh);
     //     a->signForm(*rb);
     //     a->signForm(*pr);
+    //     if (!no) std::cout << "(null)" << std::endl;
+    //     else a->signForm(*no);
+        
     //     std::cout << *sh << std::endl;
     //     std::cout << *rb << std::endl;
     //     std::cout << *pr << std::endl;
+    //     if (!no) std::cout << "(null)" << std::endl;
+    //     else std::cout << *no << std::endl;
 
     //     a->executeForm(*sh);
     //     a->executeForm(*rb);
     //     a->executeForm(*pr);
+    //     if (!no) std::cout << "(null)" << std::endl;
+    //     else a->executeForm(*no);
 
     //     std::cout << "--- end ---" << std::endl << std::endl;
 
     //     delete sh;
     //     delete rb;
     //     delete pr;
+    //     delete no;
     //     delete a;
     // }
     // catch(const std::exception& e)
@@ -137,12 +181,15 @@ int main()
     //     std::cerr << e.what() << '\n';
     // }
     
-    // std::cout << std::endl << "--- name: A / grade: 145 ---" << std::endl;
+    // std::cout << "--- name: A / grade: 145 ---" << std::endl;
     // try
     // {
-    //     AForm *sh = new ShrubberyCreationForm("Home");
-    //     AForm *rb = new RobotomyRequestForm("Secretary");
-    //     AForm *pr = new PresidentialPardonForm("Minister");
+    //     Intern  someRandomIntern;
+        
+    //     AForm *sh = someRandomIntern.makeForm("shrubbery creation", "Home");
+    //     AForm *rb = someRandomIntern.makeForm("robotomy request", "Bender");
+    //     AForm *pr = someRandomIntern.makeForm("presidential pardon", "Minister");
+    //     AForm *no = someRandomIntern.makeForm("invalid form", "nothing");
 
     //     Bureaucrat *a = new Bureaucrat("A", 145);
         
@@ -151,22 +198,33 @@ int main()
     //     std::cout << *sh << std::endl;
     //     std::cout << *rb << std::endl;
     //     std::cout << *pr << std::endl;
+    //     if (!no) std::cout << "(null)" << std::endl;
+    //     else std::cout << *no << std::endl;
+        
     //     a->signForm(*sh);
     //     a->signForm(*rb);
     //     a->signForm(*pr);
+    //     if (!no) std::cout << "(null)" << std::endl;
+    //     else a->signForm(*no);
+        
     //     std::cout << *sh << std::endl;
     //     std::cout << *rb << std::endl;
     //     std::cout << *pr << std::endl;
+    //     if (!no) std::cout << "(null)" << std::endl;
+    //     else std::cout << *no << std::endl;
 
     //     a->executeForm(*sh);
     //     a->executeForm(*rb);
     //     a->executeForm(*pr);
+    //     if (!no) std::cout << "(null)" << std::endl;
+    //     else a->executeForm(*no);
 
     //     std::cout << "--- end ---" << std::endl << std::endl;
 
     //     delete sh;
     //     delete rb;
     //     delete pr;
+    //     delete no;
     //     delete a;
     // }
     // catch(const std::exception& e)
@@ -174,12 +232,15 @@ int main()
     //     std::cerr << e.what() << '\n';
     // }
     
-    // std::cout << std::endl << "--- name: A / grade: 150 ---" << std::endl;
+    // std::cout << "--- name: A / grade: 150 ---" << std::endl;
     // try
     // {
-    //     AForm *sh = new ShrubberyCreationForm("Home");
-    //     AForm *rb = new RobotomyRequestForm("Secretary");
-    //     AForm *pr = new PresidentialPardonForm("Minister");
+    //     Intern  someRandomIntern;
+        
+    //     AForm *sh = someRandomIntern.makeForm("shrubbery creation", "Home");
+    //     AForm *rb = someRandomIntern.makeForm("robotomy request", "Bender");
+    //     AForm *pr = someRandomIntern.makeForm("presidential pardon", "Minister");
+    //     AForm *no = someRandomIntern.makeForm("invalid form", "nothing");
 
     //     Bureaucrat *a = new Bureaucrat("A", 150);
         
@@ -188,29 +249,39 @@ int main()
     //     std::cout << *sh << std::endl;
     //     std::cout << *rb << std::endl;
     //     std::cout << *pr << std::endl;
+    //     if (!no) std::cout << "(null)" << std::endl;
+    //     else std::cout << *no << std::endl;
+        
     //     a->signForm(*sh);
     //     a->signForm(*rb);
     //     a->signForm(*pr);
+    //     if (!no) std::cout << "(null)" << std::endl;
+    //     else a->signForm(*no);
+        
     //     std::cout << *sh << std::endl;
     //     std::cout << *rb << std::endl;
     //     std::cout << *pr << std::endl;
+    //     if (!no) std::cout << "(null)" << std::endl;
+    //     else std::cout << *no << std::endl;
 
     //     a->executeForm(*sh);
     //     a->executeForm(*rb);
     //     a->executeForm(*pr);
+    //     if (!no) std::cout << "(null)" << std::endl;
+    //     else a->executeForm(*no);
 
     //     std::cout << "--- end ---" << std::endl << std::endl;
 
     //     delete sh;
     //     delete rb;
     //     delete pr;
+    //     delete no;
     //     delete a;
     // }
     // catch(const std::exception& e)
     // {
     //     std::cerr << e.what() << '\n';
     // }
-
 
     std::cout << std::endl << "--- TEST END ---" << std::endl;
 

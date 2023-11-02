@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 15:45:13 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/11/02 13:37:50 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/11/02 15:14:30 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ class AForm
         {
             public:
                 const char *what(void) const throw();
-        };
+        };        
   
         virtual void    executeForm(Bureaucrat const &executor) const = 0;
 };
