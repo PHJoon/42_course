@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 16:17:17 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/11/01 18:29:44 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/11/02 13:05:28 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,14 +76,14 @@ void Bureaucrat::decrement(void)
     }
 }
 
-void    Bureaucrat::signForm(AForm *aForm)
+void    Bureaucrat::signForm(AForm &aForm)
 {
     try {
-        aForm->beSigned(*this);
-        std::cout << _name << " signed " << aForm->getName() << std::endl;
+        aForm.beSigned(*this);
+        std::cout << _name << " signed " << aForm.getName() << std::endl;
     } catch(std::exception &e) {
-        std::cout << _name << " couldn't signed " << aForm->getName() << " because " << aForm->getName() << 
-        "'s sign grade is " << aForm->getSignGrade() << " and " << _name << "'s grade is " << _grade << "." << std::endl;
+        std::cout << _name << " couldn't signed " << aForm.getName() << " because " << aForm.getName() << 
+        "'s sign grade is " << aForm.getSignGrade() << " and " << _name << "'s grade is " << _grade << "." << std::endl;
     }
 }
 
@@ -95,11 +95,11 @@ void    Bureaucrat::executeForm(AForm const &aForm)
     }
     catch(const std::exception& e)
     {
-        std::cerr << e.what() << '\n';
+        std::cout << _name << " couldn't executed " << aForm.getName() << " because " << aForm.getName() << 
+        "'s execute grade is " << aForm.getExecuteGrade() << " and " << _name << "'s grade is " << _grade << "." << std::endl;
     }
     
 }
-
 
 const char *Bureaucrat::GradeTooHighException::what(void) const throw()
 {

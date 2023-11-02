@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 17:55:08 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/11/01 18:26:31 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/11/02 12:20:41 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ RobotomyRequestForm::RobotomyRequestForm(void): AForm("RobotomyRequest", 72, 45)
     std::cout << "RobotomyRequestForm default constructor called" << std::endl;
 }
 
-RobotomyRequestForm::RobotomyRequestForm(const std::string& target): AForm("RobotomyRequest", 72, 45), _target("target")
+RobotomyRequestForm::RobotomyRequestForm(const std::string& target): AForm("RobotomyRequest", 72, 45), _target(target)
 {
     std::cout << "RobotomyRequestForm target: " << _target << "default constructor called" << std::endl;
 }

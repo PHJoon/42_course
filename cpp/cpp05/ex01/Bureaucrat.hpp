@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 16:17:20 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/11/01 13:47:13 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/11/02 13:03:18 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ class Bureaucrat
         void    increment(void);
         void    decrement(void);
 
-        void    signForm(Form *form);
+        void    signForm(Form &form);
 
         class GradeTooHighException: public std::exception
         {

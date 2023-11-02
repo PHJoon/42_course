@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 16:17:20 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/11/01 18:30:16 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/11/02 13:04:11 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ class Bureaucrat
         void    increment(void);
         void    decrement(void);
 
-        void    signForm(AForm *aForm);
+        void    signForm(AForm &aForm);
 
         void    executeForm(AForm const &aForm);
 

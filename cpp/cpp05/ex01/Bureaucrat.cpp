@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 16:17:17 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/11/01 17:49:10 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/11/02 13:03:47 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,14 +76,14 @@ void Bureaucrat::decrement(void)
     }
 }
 
-void    Bureaucrat::signForm(Form *form)
+void    Bureaucrat::signForm(Form &form)
 {
     try {
-        form->beSigned(*this);
-        std::cout << _name << " signed " << form->getName() << std::endl;
+        form.beSigned(*this);
+        std::cout << _name << " signed " << form.getName() << std::endl;
     } catch(std::exception &e) {
-        std::cout << _name << " couldn't signed " << form->getName() << " because " << form->getName() << 
-        "'s sign grade is " << form->getSignGrade() << " and " << _name << "'s grade is " << _grade << "." << std::endl;
+        std::cout << _name << " couldn't signed " << form.getName() << " because " << form.getName() << 
+        "'s sign grade is " << form.getSignGrade() << " and " << _name << "'s grade is " << _grade << "." << std::endl;
     }
 }
 

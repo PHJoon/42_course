@@ -6,15 +6,21 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 16:17:22 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/10/31 22:24:14 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/11/02 12:52:15 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 #include <iostream>
 
+void a()
+{
+    system("leaks a.out");
+}
+
 int main()
 {
+    atexit(a);
     std::cout << "--- TEST START ---" << std::endl << std::endl;
 
     std::cout << "--- name: A / grade: 151 ---" << std::endl;

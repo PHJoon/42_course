@@ -6,11 +6,11 @@
 #    By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/11 04:36:19 by hyungjpa          #+#    #+#              #
-#    Updated: 2023/11/01 17:56:03 by hyungjpa         ###   ########.fr        #
+#    Updated: 2023/11/02 12:20:58 by hyungjpa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCNAME = Bureaucrat AForm ShrubberyCreationForm RobotomyRequestForm PresidentailPardonForm main
+SRCNAME = Bureaucrat AForm ShrubberyCreationForm RobotomyRequestForm PresidentialPardonForm main
 
 SRC = $(addsuffix .cpp, $(SRCNAME))
 
