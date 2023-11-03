@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 16:02:10 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/11/02 17:54:55 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/11/03 16:15:24 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,34 +38,29 @@ ScalarConverter& ScalarConverter::operator=(ScalarConverter const& rhs)
     return *this;
 }
 
-char    ScalarConverter::toChar(const double input)
-{
-    return static_cast<char>(input);
 
+
+void    ScalarConverter::setValue(const char *str)
+{
+    char *endptr = NULL;
+    _input = str;
+    if (str == "nan" || str == "nanf" || str == "inf" || str == "inff" || str == "-inf" || str == "-inff") {
+        _nFlag = true;
+    } else {
+        _inputD = strtod()
+    }
 }
 
-int     ScalarConverter::toInt(const double input)
-{
-    return static_cast<int>(input);
-}
 
-float   ScalarConverter::toFloat(const double input)
-{
-    return static_cast<float>(input);
-}
-
-double  ScalarConverter::toDouble(const double input)
-{
-    return static_cast<double>(input);
-}
-
-void    ScalarConverter::convert(const std::string &str)
+void    ScalarConverter::convert(const char *str)
 {
     double input = std::stod(str);
     std::cout << std::fixed;
-    std::cout << input << " " << str << std::endl;
-    std::cout << "char: " << toChar(input) << std::endl;
-    std::cout << "int: " << toInt(input) << std::endl;
-    std::cout << "float: " << toFloat(input) << std::endl;
-    std::cout << "double: " << toDouble(input) << std::endl;
+
+
+    
+    std::cout << "char: " << std::endl;
+    std::cout << "int: " <<  std::endl;
+    std::cout << "float: " << std::endl;
+    std::cout << "double: " <<  std::endl;
 }
