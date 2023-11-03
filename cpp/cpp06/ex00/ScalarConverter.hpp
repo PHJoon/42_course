@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 16:02:13 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/11/03 16:15:01 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/11/03 16:58:55 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define ScalarConverter_HPP
 
 # include <string>
+# include <cstring>
 # include <iostream>
 # include <stdlib.h>
 
@@ -38,9 +39,9 @@ class ScalarConverter
         
         
 
-        void    setValue(const char *str);
+        void    setValue(const std::string input);
 
-        void    convert(const char *str);
+        void    convert(const std::string input);
 };
 
 #endif
