@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 17:55:08 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/11/02 13:54:34 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/11/03 13:39:14 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,18 +46,20 @@ RobotomyRequestForm& RobotomyRequestForm::operator=(RobotomyRequestForm const& r
 
 void    RobotomyRequestForm::executeForm(Bureaucrat const &executor) const
 {
-    if (this->getSigned() && executor.getGrade() <= this->getExecuteGrade())
-    {
-        srand(time(NULL));
-        int rand_n = rand();
-        if (rand_n % 2)
-        {
-            std::cout << _target << " has been robotomized successfully" << std::endl;
-        }
-        else
-        {
-            std::cout << _target << " has failed robotomized" << std::endl;
-        }
-    } else throw GradeTooLowException();    
-    
+    if (!this->getSigned()) throw NotSignedException();
+    else {
+        if (executor.getGrade() <= this->getExecuteGrade()) {
+            std::cout << executor.getName() << " executed " << this->getName() << std::endl;
+            srand(time(NULL));
+            int rand_n = rand();
+            if (rand_n % 2)
+            {
+                std::cout << _target << " has been robotomized successfully" << std::endl;
+            }
+            else
+            {
+                std::cout << _target << " has failed robotomized" << std::endl;
+            }
+        } else throw GradeTooLowException();    
+    } 
 }

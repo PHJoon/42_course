@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 16:17:17 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/11/02 14:04:40 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/11/03 13:38:17 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void Bureaucrat::increment(void)
 
 void Bureaucrat::decrement(void)
 {
-    if (_grade + 1 > 150) throw Bureaucrat::GradeTooHighException();
+    if (_grade + 1 > 150) throw Bureaucrat::GradeTooLowException();
     else {
         std::cout << _name << "'s grade decrement" << std::endl;
         _grade += 1;

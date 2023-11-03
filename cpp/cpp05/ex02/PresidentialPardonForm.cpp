@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 17:56:45 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/11/01 18:17:59 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/11/03 13:39:01 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,11 @@ PresidentialPardonForm& PresidentialPardonForm::operator=(PresidentialPardonForm
 
 void    PresidentialPardonForm::executeForm(Bureaucrat const &executor) const
 {
-    if (this->getSigned() && executor.getGrade() <= this->getExecuteGrade())
-    {
-        std::cout << _target << " has been pardoned by Zaphod Beeblebrox." << std::endl;
-    } else throw GradeTooLowException();
+    if (!this->getSigned()) throw NotSignedException();
+    else {
+        if (executor.getGrade() <= this->getExecuteGrade()) {
+            std::cout << executor.getName() << " executed " << this->getName() << std::endl;
+            std::cout << _target << " has been pardoned by Zaphod Beeblebrox." << std::endl;
+        } else throw GradeTooLowException();
+    }
 }

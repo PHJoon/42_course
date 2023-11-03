@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 15:59:57 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/11/02 15:39:39 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/11/03 13:40:04 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,46 +48,49 @@ ShrubberyCreationForm& ShrubberyCreationForm::operator=(ShrubberyCreationForm co
 
 void    ShrubberyCreationForm::executeForm(Bureaucrat const &executor) const
 {
-    if (this->getSigned() && executor.getGrade() <= this->getExecuteGrade())
-    {
-        std::ofstream   outfile;
-        std::string fileName = _target + "_shrubbery";
+    if (!this->getSigned()) throw NotSignedException();
+    else {
+        if (executor.getGrade() <= this->getExecuteGrade()) {
+            std::ofstream   outfile;
+            std::string fileName = _target + "_shrubbery";
 
-        const std::string ret = "                            .\n"
-                                "             .              .              ;%\n"
-                                "               ,           ,                :;%  %;\n"
-                                "                :         ;                   :;%;'     .,\n"
-                                "       ,.        %;     %;            ;        %;'    ,;\n"
-                                "         ;       ;%;  %%;        ,     %;    ;%;    ,%'\n"
-                                "          %;       %;%;      ,  ;       %;  ;%;   ,%;'\n"
-                                "           ;%;      %;        ;%;        % ;%;  ,%;'\n"
-                                "            `%;.     ;%;     %;'         `;%%;.%;'\n"
-                                "             `:;%.    ;%%. %@;        %; ;@%;%'\n"
-                                "                `:%;.  :;bd%;          %;@%;'\n"
-                                "                  `@%:.  :;%.         ;@@%;'   \n"
-                                "                    `@%.  `;@%.      ;@@%;         \n"
-                                "                      `@%%. `@%%    ;@@%;        \n"
-                                "                        ;@%. :@%%  %@@%;       \n"
-                                "                          %@bd%%%bd%%:;     \n"
-                                "                            #@%%%%%:;;\n"
-                                "                            %@@%%%::;\n"
-                                "                            %@@@%(o);  . '\n"
-                                "                            %@@@o%;:(.,'\n"
-                                "                        `.. %@@@o%::;\n"
-                                "                           `)@@@o%::;\n"
-                                "                            %@@(o)::;\n"
-                                "                           .%@@@@%::;\n"
-                                "                           ;%@@@@%::;.\n"
-                                "                          ;%@@@@%%:;;;.\n"
-                                "                      ...;%@@@@@%%:;;;;,..    Gilo97";
+            const std::string ret = "                            .\n"
+                                    "             .              .              ;%\n"
+                                    "               ,           ,                :;%  %;\n"
+                                    "                :         ;                   :;%;'     .,\n"
+                                    "       ,.        %;     %;            ;        %;'    ,;\n"
+                                    "         ;       ;%;  %%;        ,     %;    ;%;    ,%'\n"
+                                    "          %;       %;%;      ,  ;       %;  ;%;   ,%;'\n"
+                                    "           ;%;      %;        ;%;        % ;%;  ,%;'\n"
+                                    "            `%;.     ;%;     %;'         `;%%;.%;'\n"
+                                    "             `:;%.    ;%%. %@;        %; ;@%;%'\n"
+                                    "                `:%;.  :;bd%;          %;@%;'\n"
+                                    "                  `@%:.  :;%.         ;@@%;'   \n"
+                                    "                    `@%.  `;@%.      ;@@%;         \n"
+                                    "                      `@%%. `@%%    ;@@%;        \n"
+                                    "                        ;@%. :@%%  %@@%;       \n"
+                                    "                          %@bd%%%bd%%:;     \n"
+                                    "                            #@%%%%%:;;\n"
+                                    "                            %@@%%%::;\n"
+                                    "                            %@@@%(o);  . '\n"
+                                    "                            %@@@o%;:(.,'\n"
+                                    "                        `.. %@@@o%::;\n"
+                                    "                           `)@@@o%::;\n"
+                                    "                            %@@(o)::;\n"
+                                    "                           .%@@@@%::;\n"
+                                    "                           ;%@@@@%::;.\n"
+                                    "                          ;%@@@@%%:;;;.\n"
+                                    "                      ...;%@@@@@%%:;;;;,..    Gilo97";
 
+            std::cout << executor.getName() << " executed " << this->getName() << std::endl;
 
-        outfile.open(fileName.c_str());
-        if (outfile.is_open()) {
-            outfile << ret;
-            outfile.close();
-        } else {
-            std::cout << "outfile open error" << std::endl;
-        }
-    } else throw GradeTooLowException();
+            outfile.open(fileName.c_str());
+            if (outfile.is_open()) {
+                outfile << ret;
+                outfile.close();
+            } else {
+                std::cout << "outfile open error" << std::endl;
+            }
+        } else throw GradeTooLowException();
+    }
 }

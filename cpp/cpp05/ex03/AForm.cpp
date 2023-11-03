@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 15:45:07 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/11/01 17:39:59 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/11/03 13:34:36 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ AForm::AForm(const std::string& name, const int s_grade, const int e_grade): _na
 {
     std::cout << "AForm " << _name << " constructor called" << std::endl;
     if (s_grade < 1 || e_grade < 1) throw GradeTooHighException();
-    else if (s_grade > 150 || s_grade > 150) throw GradeTooLowException();
+    else if (s_grade > 150 || e_grade > 150) throw GradeTooLowException();
 }
 
 AForm::AForm(const AForm& src): _name(src._name), _s_grade(src._s_grade), _e_grade(src._e_grade), _signed(src._signed)
@@ -83,6 +83,11 @@ const char *AForm::GradeTooHighException::what(void) const throw()
 const char *AForm::GradeTooLowException::what(void) const throw()
 {
     return "Grade Too Low!";
+}
+
+const char *AForm::NotSignedException::what(void) const throw()
+{
+    return "Not Signed!";
 }
 
 std::ostream &operator<<(std::ostream &out, const AForm &aForm)

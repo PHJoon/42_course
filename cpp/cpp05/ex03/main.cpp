@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 16:17:22 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/11/02 15:49:38 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/11/03 13:48:36 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@
 int main()
 {
     // atexit(a);
-    std::cout << "--- TEST START ---" << std::endl << std::endl;
+    std::cout << std::setw(40) << "--- TEST START ---" << std::endl << std::endl;
 
-    std::cout << "--- name: A / grade: 1 ---" << std::endl;
+    std::cout << std::setw(60) << "--- name: A / grade: 1 ---" << std::endl;
     try
     {
         Intern  someRandomIntern;
@@ -40,7 +40,7 @@ int main()
 
         Bureaucrat *a = new Bureaucrat("A", 1);
         
-        std::cout << std::endl << "--- main ---" << std::endl;
+        std::cout << std::endl << std::setw(60) << "--- main ---" << std::endl;
 
         std::cout << *sh << std::endl;
         std::cout << *rb << std::endl;
@@ -66,7 +66,7 @@ int main()
         if (!no) std::cout << "(null)" << std::endl;
         else a->executeForm(*no);
 
-        std::cout << "--- end ---" << std::endl << std::endl;
+        std::cout << std::setw(60) << "--- end ---" << std::endl << std::endl;
 
         delete sh;
         delete rb;
@@ -79,7 +79,7 @@ int main()
         std::cerr << e.what() << '\n';
     }
     
-    // std::cout << "--- name: A / grade: 25 ---" << std::endl;
+    // std::cout << std::setw(60) << "--- name: A / grade: 25 ---" << std::endl;
     // try
     // {
     //     Intern  someRandomIntern;
@@ -91,7 +91,7 @@ int main()
 
     //     Bureaucrat *a = new Bureaucrat("A", 25);
         
-    //     std::cout << std::endl << "--- main ---" << std::endl;
+    //     std::cout << std::endl << std::setw(60) << "--- main ---" << std::endl;
 
     //     std::cout << *sh << std::endl;
     //     std::cout << *rb << std::endl;
@@ -117,7 +117,7 @@ int main()
     //     if (!no) std::cout << "(null)" << std::endl;
     //     else a->executeForm(*no);
         
-    //     std::cout << "--- end ---" << std::endl << std::endl;
+    //     std::cout << std::setw(60) << "--- end ---" << std::endl << std::endl;
 
     //     delete sh;
     //     delete rb;
@@ -130,7 +130,7 @@ int main()
     //     std::cerr << e.what() << '\n';
     // }
     
-    // std::cout << "--- name: A / grade: 72 ---" << std::endl;
+    // std::cout << std::setw(60) << "--- name: A / grade: 72 ---" << std::endl;
     // try
     // {
     //     Intern  someRandomIntern;
@@ -142,7 +142,7 @@ int main()
 
     //     Bureaucrat *a = new Bureaucrat("A", 72);
         
-    //     std::cout << std::endl << "--- main ---" << std::endl;
+    //     std::cout << std::endl << std::setw(60) << "--- main ---" << std::endl;
 
     //     std::cout << *sh << std::endl;
     //     std::cout << *rb << std::endl;
@@ -168,7 +168,7 @@ int main()
     //     if (!no) std::cout << "(null)" << std::endl;
     //     else a->executeForm(*no);
 
-    //     std::cout << "--- end ---" << std::endl << std::endl;
+    //     std::cout << std::setw(60) << "--- end ---" << std::endl << std::endl;
 
     //     delete sh;
     //     delete rb;
@@ -181,7 +181,7 @@ int main()
     //     std::cerr << e.what() << '\n';
     // }
     
-    // std::cout << "--- name: A / grade: 145 ---" << std::endl;
+    // std::cout << std::setw(60) << "--- name: A / grade: 145 ---" << std::endl;
     // try
     // {
     //     Intern  someRandomIntern;
@@ -193,7 +193,7 @@ int main()
 
     //     Bureaucrat *a = new Bureaucrat("A", 145);
         
-    //     std::cout << std::endl << "--- main ---" << std::endl;
+    //     std::cout << std::endl << std::setw(60) << "--- main ---" << std::endl;
 
     //     std::cout << *sh << std::endl;
     //     std::cout << *rb << std::endl;
@@ -219,7 +219,7 @@ int main()
     //     if (!no) std::cout << "(null)" << std::endl;
     //     else a->executeForm(*no);
 
-    //     std::cout << "--- end ---" << std::endl << std::endl;
+    //     std::cout << std::setw(60) << "--- end ---" << std::endl << std::endl;
 
     //     delete sh;
     //     delete rb;
@@ -232,7 +232,7 @@ int main()
     //     std::cerr << e.what() << '\n';
     // }
     
-    // std::cout << "--- name: A / grade: 150 ---" << std::endl;
+    // std::cout << std::setw(60) << "--- name: A / grade: 150 ---" << std::endl;
     // try
     // {
     //     Intern  someRandomIntern;
@@ -244,7 +244,7 @@ int main()
 
     //     Bureaucrat *a = new Bureaucrat("A", 150);
         
-    //     std::cout << std::endl << "--- main ---" << std::endl;
+    //     std::cout << std::endl << std::setw(60) << "--- main ---" << std::endl;
 
     //     std::cout << *sh << std::endl;
     //     std::cout << *rb << std::endl;
@@ -270,7 +270,7 @@ int main()
     //     if (!no) std::cout << "(null)" << std::endl;
     //     else a->executeForm(*no);
 
-    //     std::cout << "--- end ---" << std::endl << std::endl;
+    //     std::cout << std::setw(60) << "--- end ---" << std::endl << std::endl;
 
     //     delete sh;
     //     delete rb;
@@ -283,7 +283,7 @@ int main()
     //     std::cerr << e.what() << '\n';
     // }
 
-    std::cout << std::endl << "--- TEST END ---" << std::endl;
+    std::cout << std::endl << std::setw(40) << "--- TEST END ---" << std::endl;
 
     return 0;
 }
