@@ -6,68 +6,155 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 16:02:10 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/11/03 17:04:45 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/11/10 05:44:16 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScalarConverter.hpp"
 
+char ScalarConverter::_char = 0;
+int ScalarConverter::_int = 0;
+float ScalarConverter::_float = 0.0f;
+double ScalarConverter::_double = 0.0;
+
+bool ScalarConverter::_displayableFlag = true;
+bool ScalarConverter::_cImpossibleFlag = false;
+bool ScalarConverter::_iImpossibleFlag = false;
+bool ScalarConverter::_fImpossibleFlag = false;
+bool ScalarConverter::_infFlag = false;
+
 ScalarConverter::ScalarConverter(void)
 {
-    // std::cout << "ScalarConverter default constructor called" << std::endl;
 }
 
 ScalarConverter::ScalarConverter(const ScalarConverter& src)
 {
-    // std::cout << "ScalarConverter copy constructor called" << std::endl;
     (void)src;
 }
 
 ScalarConverter::~ScalarConverter(void)
 {
-    // std::cout << "ScalarConverter destructor called" << std::endl;
 }
 
 ScalarConverter& ScalarConverter::operator=(ScalarConverter const& rhs)
 {
-    // std::cout << "ScalarConverter copy assignment operator called" << std::endl;
-    if (this != &rhs)
-    {
-        (void)rhs;
-    }
+    (void)rhs;
     return *this;
 }
 
-
-
-void    ScalarConverter::setValue(const std::string input)
+// pseudo_literals
+bool    ScalarConverter::checkPseudoLiterals(double n)
 {
-    char *endptr = NULL;
-    _input = input;
-    if (input == "nan" || input == "nanf" || input == "inf" || input == "inff" || input == "-inf" || input == "-inff") {
-        _nFlag = true;
-    } else {
-        _inputD = strtod(input.c_str(), &endptr);
-        if (*endptr && std::strcmp(endptr, "f")) {
-            // 에러
+    if (isnan(n) || isinf(n)) 
+    {
+        if (isinf(n)) {
+            _infFlag = true;
         }
-        _pFlag = true;
-        _c = static_cast<char>(_inputD);
-        _i = static_cast<int>(_inputD);
-        _f = static_cast<float>(_inputD);
-        _d = static_cast<double>(_inputD);
+        return true;
+    }
+    else return false;
+}
+
+void ScalarConverter::convertChar(double n)
+{
+    if (checkPseudoLiterals(n)) {
+        _cImpossibleFlag = true;
+    } else {
+        int num = static_cast<int>(n);
+        if ((num >= 0 && num < 32) || num == 127) {
+            _displayableFlag = false;
+        } else if (num >= 32 && num < 127) {
+            _char = static_cast<char>(n);       
+        } else {
+            _cImpossibleFlag = true;
+        }   
+    }
+}
+
+void ScalarConverter::convertInt(double n)
+{
+    if (checkPseudoLiterals(n)) {
+        _iImpossibleFlag = true;
+    } else {
+        if (n < std::numeric_limits<int>::lowest() || n > std::numeric_limits<int>::max()) {
+            _iImpossibleFlag = true;
+        } else {
+            _int = static_cast<int>(n);
+        }
+    }
+}
+
+void ScalarConverter::convertFloat(double n)
+{
+    if (checkPseudoLiterals(n)) {
+        _float = static_cast<float>(n);
+    } else {
+        if (n < std::numeric_limits<float>::lowest() || n > std::numeric_limits<float>::max()) {
+            _fImpossibleFlag = true;
+        } else {
+            _float = static_cast<float>(n);
+        }
+    }
+}
+
+void ScalarConverter::convertDouble(double n)
+{
+    _double = n;
+}
+
+void ScalarConverter::printAll(void)
+{
+    if (_cImpossibleFlag) {
+        std::cout << "char: impossible" << std::endl; 
+    } else {
+        if (!_displayableFlag) {
+            std::cout << "char: Non displayable" << std::endl;
+        } else {
+            std::cout << "char: '" << _char << "'" << std::endl;
+        }
+    }
+
+    if (_iImpossibleFlag) {
+        std::cout << "int: impossible" << std::endl; 
+    } else {
+        std::cout << "int: " << _int << std::endl;
+    }
+
+    if (_fImpossibleFlag) {
+        std::cout << "float: impossible" << std::endl;
+    } else {
+        if (_infFlag) {
+            std::cout << std::showpos << "float: " << _float << "f" << std::endl;
+        } else {
+            std::cout << std::fixed << "float: " << std::setprecision(1) << _float << "f" << std::endl;
+        }
+    }
+
+    if (_infFlag) {
+        std::cout << std::showpos << "double: " << _double << std::endl;
+    } else {
+        std::cout << std::fixed << "double: " << std::setprecision(1) << _double << std::endl;
     }
 }
 
 
-void    ScalarConverter::convert(const std::string input)
+void ScalarConverter::convert(const std::string &input)
 {
-    std::cout << std::fixed;
-    setValue(input);
-
+    char *end = NULL;
+    double  temp = strtod(input.c_str(), &end);
     
-    std::cout << "char: " << _c << std::endl;
-    std::cout << "int: " <<  _i << std::endl;
-    std::cout << "float: " << _f << std::endl;
-    std::cout << "double: " << _d << std::endl;
+    if (temp == 0.0 && input[0] != '+' && input[0] != '-' && !isdigit(input[0])) {
+        std::cerr << "invalid argument!" << std::endl;
+        return ;
+    } else if (*end && strcmp(end, "f")) {
+        std::cerr << "invalid argument!" << std::endl;
+        return ;
+    }
+
+    convertChar(temp);
+    convertInt(temp);
+    convertFloat(temp);
+    convertDouble(temp);
+
+    printAll();
 }

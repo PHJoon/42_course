@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 16:02:13 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/11/03 16:58:55 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/11/10 05:43:47 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,31 +17,42 @@
 # include <cstring>
 # include <iostream>
 # include <stdlib.h>
+# include <limits>
+# include <iomanip>
+# include <cmath>
 
 class ScalarConverter
 {
     private:
-        std::string  _input;
-        double  _inputD;
-        char    _c;
-        int     _i;
-        float   _f;
-        double  _d;
-
-        bool    _nFlag;
-        bool    _pFlag;
-    public:
         ScalarConverter(void);
         ScalarConverter(const ScalarConverter& src);
         virtual ~ScalarConverter(void);
         ScalarConverter& operator=(ScalarConverter const& rhs);
 
-        
-        
+        static char _char;
+        static int  _int;
+        static float _float;
+        static double _double;
 
-        void    setValue(const std::string input);
+        static bool _displayableFlag;
+        static bool _cImpossibleFlag;
+        static bool _iImpossibleFlag;
+        static bool _fImpossibleFlag;
 
-        void    convert(const std::string input);
+        static bool _infFlag;
+        
+    
+
+        static void convertChar(double n);
+        static void convertInt(double n);
+        static void convertFloat(double n);
+        static void convertDouble(double n);
+        static bool checkPseudoLiterals(double n);
+
+        static void printAll(void);
+        
+    public :
+        static void convert(const std::string &input);
 };
 
 #endif

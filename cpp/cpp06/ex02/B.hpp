@@ -1,22 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   B.hpp                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/02 16:27:16 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/11/10 05:44:40 by hyungjpa         ###   ########.fr       */
+/*   Created: 2023/11/11 19:54:43 by hyungjpa          #+#    #+#             */
+/*   Updated: 2023/11/11 19:55:00 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ScalarConverter.hpp"
-#include <iostream>
+#ifndef B_HPP
+# define B_HPP
 
-int main(int ac, char **av)
+# include "Base.hpp"
+
+class B: public Base
 {
-    if (ac == 2) {
-        ScalarConverter::convert(std::string(av[1]));
-    }
-    return 0;
-}
+    private:
+    public:
+};
+
+#endif
