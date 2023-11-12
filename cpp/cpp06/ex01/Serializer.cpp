@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 05:57:29 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/11/10 16:55:52 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/11/12 17:38:08 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,10 @@ Serializer& Serializer::operator=(Serializer const& rhs)
 
 uintptr_t Serializer::serialize(Data *ptr)
 {
-    uintptr_t ret;
-    ret = reinterpret_cast<uintptr_t>(ptr);
-    return ret;
+    return reinterpret_cast<uintptr_t>(ptr);
 }
 
 Data *Serializer::deserialize(uintptr_t raw)
 {
-    Data *ret;
-    ret = reinterpret_cast<Data *>(raw);
-    return ret;
+    return reinterpret_cast<Data *>(raw);
 }

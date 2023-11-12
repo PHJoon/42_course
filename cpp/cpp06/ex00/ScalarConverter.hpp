@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 16:02:13 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/11/10 05:43:47 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/11/12 17:31:48 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <string>
 # include <cstring>
 # include <iostream>
-# include <stdlib.h>
+# include <cstdlib>
 # include <limits>
 # include <iomanip>
 # include <cmath>
@@ -40,15 +40,13 @@ class ScalarConverter
         static bool _fImpossibleFlag;
 
         static bool _infFlag;
-        
-    
 
         static void convertChar(double n);
         static void convertInt(double n);
         static void convertFloat(double n);
         static void convertDouble(double n);
-        static bool checkPseudoLiterals(double n);
 
+        static bool checkPseudoLiterals(double n);
         static void printAll(void);
         
     public :

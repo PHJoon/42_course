@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 16:02:10 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/11/10 05:44:16 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/11/12 17:23:30 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ bool    ScalarConverter::checkPseudoLiterals(double n)
         }
         return true;
     }
-    else return false;
+    return false;
 }
 
 void ScalarConverter::convertChar(double n)
@@ -141,14 +141,18 @@ void ScalarConverter::printAll(void)
 void ScalarConverter::convert(const std::string &input)
 {
     char *end = NULL;
-    double  temp = strtod(input.c_str(), &end);
+    double  temp = std::strtod(input.c_str(), &end);
     
-    if (temp == 0.0 && input[0] != '+' && input[0] != '-' && !isdigit(input[0])) {
-        std::cerr << "invalid argument!" << std::endl;
-        return ;
-    } else if (*end && strcmp(end, "f")) {
-        std::cerr << "invalid argument!" << std::endl;
-        return ;
+    if (input.length() == 1 && *end) {
+        temp = static_cast<double>(input[0]);
+    } else {
+        if (temp == 0.0 && input[0] != '+' && input[0] != '-' && !isdigit(input[0])) {
+            std::cerr << "invalid argument!" << std::endl;
+            return ;
+        } else if (*end && std::strcmp(end, "f")) {
+            std::cerr << "invalid argument!" << std::endl;
+            return ;
+        }
     }
 
     convertChar(temp);

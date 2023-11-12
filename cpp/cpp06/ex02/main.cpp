@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 19:55:33 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/11/11 20:20:40 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/11/12 18:00:01 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,13 @@ Base *generate(void)
 
     switch (rand_n) {
         case 0:
+            std::cout << "A generated" << std::endl;
             return new A();
         case 1:
+            std::cout << "B generated" << std::endl;
             return new B();
         case 2:
+            std::cout << "C generated" << std::endl;
             return new C();
         default:
             return NULL;
