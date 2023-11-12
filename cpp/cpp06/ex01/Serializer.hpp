@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 05:57:27 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/11/12 17:40:09 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/11/12 18:20:07 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include <iostream>
 # include <string>
-# include <cstdint>
+# include <stdint.h>
 
 struct Data
 {
