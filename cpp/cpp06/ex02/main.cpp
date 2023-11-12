@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 19:55:33 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/11/12 18:00:01 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/11/12 18:21:32 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include "C.hpp"
 #include <ctime>
 #include <string>
+#include <cstdlib>
 
 Base *generate(void)
 {
