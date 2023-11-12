@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 16:02:10 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/11/12 17:23:30 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/11/12 18:08:24 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void ScalarConverter::convertInt(double n)
     if (checkPseudoLiterals(n)) {
         _iImpossibleFlag = true;
     } else {
-        if (n < std::numeric_limits<int>::lowest() || n > std::numeric_limits<int>::max()) {
+        if (n < std::numeric_limits<int>::min() || n > std::numeric_limits<int>::max()) {
             _iImpossibleFlag = true;
         } else {
             _int = static_cast<int>(n);
@@ -89,7 +89,7 @@ void ScalarConverter::convertFloat(double n)
     if (checkPseudoLiterals(n)) {
         _float = static_cast<float>(n);
     } else {
-        if (n < std::numeric_limits<float>::lowest() || n > std::numeric_limits<float>::max()) {
+        if (n < -std::numeric_limits<float>::max() || n > std::numeric_limits<float>::max()) {
             _fImpossibleFlag = true;
         } else {
             _float = static_cast<float>(n);
