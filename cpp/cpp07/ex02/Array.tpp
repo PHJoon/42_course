@@ -1,33 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   iter.hpp                                           :+:      :+:    :+:   */
+/*   Array.tpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/12 07:11:41 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/11/12 18:42:30 by hyungjpa         ###   ########.fr       */
+/*   Created: 2023/11/12 18:32:17 by hyungjpa          #+#    #+#             */
+/*   Updated: 2023/11/12 18:55:54 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef iter_HPP
-# define iter_HPP
+#include "Array.hpp"
 
-# include <iostream>
-# include <cstddef>
-
-template<typename T>
-void iter(T *arrPtr, std::size_t len, void (*func)(T&))
+Array::Array<T>(void)
 {
-    for (std::size_t i = 0; i < len; i++) {
-        func(arrPtr[i]);
-    }
+    
 }
+        Array(unsigned int n);
+        Array(const Array& src);
+        virtual ~Array(void);
+        Array& operator=(Array const& rhs);
 
-template<typename T>
-void printArr(T &input)
-{
-    std::cout << input << " | ";
-}
+        T &operator[](unsigned int idx);
 
-#endif
+        const std::size_t size(void) const;
