@@ -6,21 +6,69 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 18:32:17 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/11/12 18:55:54 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/11/14 07:44:09 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Array.hpp"
 
-Array::Array<T>(void)
+template<typename T>
+Array<T>::Array(void): _array(NULL), _size(0)
 {
-    
 }
-        Array(unsigned int n);
-        Array(const Array& src);
-        virtual ~Array(void);
-        Array& operator=(Array const& rhs);
 
-        T &operator[](unsigned int idx);
+template<typename T>
+Array<T>::Array(unsigned int n): _array(new T[n]), _size(n)
+{
+}
 
-        const std::size_t size(void) const;
+template<typename T>
+Array<T>::Array(const Array& src): _array(new T[src._size]), _size(src._size)
+{
+	for (unsigned int i = 0; i < src._size; i++)
+	{
+		this->_array[i] = src._array[i];
+	}
+}
+
+template<typename T>
+Array<T>::~Array(void)
+{
+	delete[] _array;
+	_array = NULL;
+}
+
+template<typename T>
+Array<T>& Array<T>::operator=(Array const& rhs)
+{
+	if (this != &rhs)
+	{
+		delete[] this->_array;
+		this->_array = new T[rhs._size];
+		for (unsigned int i = 0; i < rhs._size; i++)
+		{
+			this->_array[i] = rhs._array[i];
+		}
+	}
+	return *this;
+}
+
+template<typename T>
+T& Array<T>::operator[](unsigned int idx)
+{
+	if (idx >= _size) throw OutOfBounds();
+	return _array[idx];
+}
+
+template<typename T>
+const T& Array<T>::operator[](unsigned int idx) const
+{
+	if (idx >= _size) throw OutOfBounds();
+	return _array[idx];
+}
+
+template<typename T>
+unsigned int Array<T>::size(void) const
+{
+	return _size;
+}

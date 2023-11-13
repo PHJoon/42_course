@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 18:29:41 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/11/12 18:54:52 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/11/14 07:44:25 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,35 @@
 # define Array_HPP
 
 # include <iostream>
-# include <cstddef>
+# include <exception>
 
 template<typename T>
 class Array
 {
     private:
-        std::size_t _arrayLen;
         T *_array;
+        unsigned int _size;
     public:
         Array(void);
         Array(unsigned int n);
         Array(const Array& src);
-        virtual ~Array(void);
+        ~Array(void);
         Array& operator=(Array const& rhs);
 
         T &operator[](unsigned int idx);
+        const T &operator[](unsigned int idx) const;
 
-        const std::size_t size(void) const;
+        unsigned int size(void) const;
+
+        class OutOfBounds: public std::exception
+        {
+            public:
+                const char *what(void) const throw()
+                {
+                    return "Out of bounds";
+                }
+        };
+        
 };
 
 # include "Array.tpp"
