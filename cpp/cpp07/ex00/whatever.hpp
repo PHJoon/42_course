@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 07:00:30 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/11/12 07:07:40 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/11/15 14:11:11 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void    swap(T &a, T &b)
 template<typename T>
 T &min(T &a, T &b)
 {
-    if (a > b) return b;
-    else return a;
+    if (a < b) return a;
+    else return b;
 }
 
 template<typename T>
@@ -34,6 +34,19 @@ T &max(T &a, T &b)
 {
     if (a > b) return a;
     else return b;
+}
+
+template<typename T>
+void    printTest(T& a, T& b)
+{
+    std::cout << std::boolalpha;
+    std::cout << "before swap = "; 
+    std::cout << a << " / " << b << std::endl;
+    ::swap(a, b);
+    std::cout << "after swap = ";
+    std::cout << a << " / " << b << std::endl;
+    std::cout << "min : " << ::min(a, b) << std::endl;
+    std::cout << "max : " << ::max(a, b) << std::endl << std::endl;
 }
 
 #endif

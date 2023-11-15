@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 18:29:41 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/11/14 07:44:25 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/11/15 14:33:29 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,7 @@ class Array
                 {
                     return "Out of bounds";
                 }
-        };
-        
+        }; 
 };
 
 # include "Array.tpp"

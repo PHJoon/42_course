@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 07:11:41 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/11/12 18:42:30 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/11/15 14:31:00 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,30 @@ template<typename T>
 void printArr(T &input)
 {
     std::cout << input << " | ";
+}
+
+template<typename T>
+void addSomething(T &input)
+{
+    input += 42;
+}
+
+template<>
+void addSomething(std::string &input)
+{
+    input += " 추가한 내용";
+}
+
+template<>
+void addSomething(char &input)
+{
+    input += 1;
+}
+
+template<>
+void addSomething(bool &input)
+{
+    input = !input;
 }
 
 #endif
