@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 07:11:39 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/11/15 14:29:48 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/11/16 09:59:44 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void testIter(T *arrPtr, std::size_t len)
     std::cout << std::boolalpha;
     std::cout << "before addSomething" << std::endl;
     iter(arrPtr, len, ::printArr);
+    std::cout << std::endl;
     iter(arrPtr, len, ::addSomething);
     std::cout << std::endl << "after addSomething" << std::endl;
     iter(arrPtr, len, ::printArr);
@@ -29,9 +30,9 @@ void testIter(T *arrPtr, std::size_t len)
 int main()
 {
     std::string arr1[3] = {"테스트용", "배열입니다", "!!"};
-    int arr2[5] = {123, 45, 6789, 10, 11};
-    double arr3[4] = {0.023, 1234.123, 384.0, 99.1};
-    char arr4[2] = {'a', 'b'};
+    const int arr2[5] = {123, 45, 6789, 10, 11};
+    const double arr3[4] = {0.023, 1234.123, 384.0, 99.1};
+    const char arr4[2] = {'a', 'b'};
     bool arr5[3] = {true, false, false};
 
     std::cout << "--- std::string ---" << std::endl;

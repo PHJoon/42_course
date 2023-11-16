@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 07:00:30 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/11/15 14:11:11 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/11/16 10:30:43 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,15 @@ void    printTest(T& a, T& b)
     std::cout << a << " / " << b << std::endl;
     ::swap(a, b);
     std::cout << "after swap = ";
+    std::cout << a << " / " << b << std::endl;
+    std::cout << "min : " << ::min(a, b) << std::endl;
+    std::cout << "max : " << ::max(a, b) << std::endl << std::endl;
+}
+
+template<typename T>
+void    printTest(const T& a, const T& b)
+{
+    std::cout << std::boolalpha;
     std::cout << a << " / " << b << std::endl;
     std::cout << "min : " << ::min(a, b) << std::endl;
     std::cout << "max : " << ::max(a, b) << std::endl << std::endl;

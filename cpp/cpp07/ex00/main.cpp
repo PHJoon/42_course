@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 07:07:42 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/11/15 14:11:20 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/11/16 10:25:51 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,17 @@ int main(void)
     ::printTest(d_a, d_b);
     ::printTest(b_a, b_b);
 
+    std::cout << std::endl << "--- const test ---" << std::endl;
+    const char c_x = 'a';
+    const char c_y = 'k';
+    const float f_x = 1.2231f;
+    const float f_y = 9239.343f;
+
+
+    ::printTest(c_x, c_y);
+    ::printTest(f_x, f_y);
+    ::printTest(4.242, 2.424);
+    ::printTest(true, false);
 
     return 0;
 }
