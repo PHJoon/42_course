@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 10:34:21 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/11/16 12:59:45 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/11/18 17:35:49 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 template<typename T>
 typename T::iterator easyfind(T &container, int target)
 {
-    typename T::iterator it = std::find(container.begin(), container.end(), target);
+    typename T::iterator iter = std::find(container.begin(), container.end(), target);
     if (ret == container.end()) {
         throw std::runtime_error("no target in container");
-    } else return it;
+    } else return iter;
 }

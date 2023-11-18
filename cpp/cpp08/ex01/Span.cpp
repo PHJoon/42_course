@@ -5,33 +5,68 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/16 13:04:01 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/11/16 13:04:14 by hyungjpa         ###   ########.fr       */
+/*   Created: 2023/11/18 18:11:23 by hyungjpa          #+#    #+#             */
+/*   Updated: 2023/11/18 20:26:35 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Span.hpp"
 
-Span::Span(void)
+Span::Span(void): _vector(0)
 {
-    std::cout << "Span default constructor called" << std::endl;
 }
 
-Span::Span(const Span& src)
+Span::Span(unsinge int n): _vector(n)
 {
-    std::cout << "Span copy constructor called" << std::endl;
+}
+
+Span::Span(const Span& src): _vector(src._vector)
+{
 }
 
 Span::~Span(void)
 {
-    std::cout << "Span destructor called" << std::endl;
 }
 
 Span& Span::operator=(Span const& rhs)
 {
-    std::cout << "Span copy assignment operator called" << std::endl;
     if (this != &rhs)
     {
+        this->_vector = rhs._vector;
     }
     return *this;
+}
+
+void Span::addNumber(int n)
+{
+    if (_vector.size() == std::numeric_limits<int>::max() + (-std::numeric_limits<int>::min())) {
+        throw FullSpanException();
+    }
+    _vector.push_back(n);
+}
+
+const unsigned int Span::shortestSpan(void) const
+{
+    unsigned int ret = 0;
+    for (std::vector<int>::iterator iter = _vector.begin(); iter != _vector.end(); iter++)
+    {
+        
+    }
+    
+    
+}
+
+const unsigned int Span::longestSpan(void) const
+{
+    
+}
+
+const char *Span::FullSpanException(void) const throw()
+{
+    return "Span is Full";
+}
+
+const char *Span::NoSpanException(void) const throw()
+{
+    return "There is no Span";
 }
