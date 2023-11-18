@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 18:11:23 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/11/18 20:26:35 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/11/18 21:09:13 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ Span::Span(void): _vector(0)
 {
 }
 
-Span::Span(unsinge int n): _vector(n)
+Span::Span(unsigned int n): _vector(n)
 {
 }
 
@@ -39,9 +39,8 @@ Span& Span::operator=(Span const& rhs)
 
 void Span::addNumber(int n)
 {
-    if (_vector.size() == std::numeric_limits<int>::max() + (-std::numeric_limits<int>::min())) {
+    
         throw FullSpanException();
-    }
     _vector.push_back(n);
 }
 
