@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 07:11:39 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/11/16 09:59:44 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/11/18 17:20:36 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,11 @@ int main()
     bool arr5[3] = {true, false, false};
 
     std::cout << "--- std::string ---" << std::endl;
+    // iter(arr1, 3, ::printArr);
     testIter(arr1, sizeof(arr1)/sizeof(std::string));
     
     std::cout << "--- int ---" << std::endl;
+    // iter(arr2, 5, ::printArr);
     testIter(arr2, sizeof(arr2)/sizeof(int));
     
     std::cout << "--- double ---" << std::endl;

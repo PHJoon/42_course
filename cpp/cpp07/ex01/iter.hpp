@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 07:11:41 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/11/16 10:03:44 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/11/18 17:21:12 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,6 @@
 
 # include <iostream>
 # include <cstddef>
-
-template<typename T>
-void iter(const T *arrPtr, std::size_t len, void (*func)(const T&))
-{
-    for (std::size_t i = 0; i < len; i++) {
-        func(arrPtr[i]);
-    }
-}
 
 template<typename T>
 void iter(T *arrPtr, std::size_t len, void (*func)(T&))
@@ -39,6 +31,12 @@ void printArr(const T &input)
 }
 
 template<typename T>
+void printArr(T &input)
+{
+    std::cout << input << " | ";
+}
+
+template<typename T>
 void addSomething(T &input)
 {
     input += 42;
@@ -47,7 +45,7 @@ void addSomething(T &input)
 template<typename T>
 void addSomething(const T &input)
 {
-    std::cout << "no addSomething:: const " << input << std::endl;
+    std::cout << "const parameter => " << input << std::endl;
 }
 
 template<>
