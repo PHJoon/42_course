@@ -64,7 +64,9 @@
         "deque": "cpp",
         "list": "cpp",
         "stack": "cpp",
-        "*.tpp": "cpp"
+        "*.tpp": "cpp",
+        "random": "cpp",
+        "numeric": "cpp"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }

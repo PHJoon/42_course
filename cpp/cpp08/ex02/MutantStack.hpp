@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 11:10:41 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/11/21 14:48:49 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/11/22 07:38:35 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,31 +15,36 @@
 
 # include <algorithm>
 # include <stack>
+# include <deque>
 
-
-template<typename T>
-class MutantStack: public std::stack<T>
+template<typename T, class Container = std::deque<T> >
+class MutantStack: public std::stack<T, Container>
 {
-
     public:
         MutantStack(void);
         MutantStack(const MutantStack& src);
         ~MutantStack(void);
         MutantStack& operator=(MutantStack const& rhs);
 
-        // typedef typename MutantStack<T>::container_type::iterator iterator;
-        // iterator begin(void);
-
-        typename MutantStack<T>::container_type::iterator begin(void);
-        typename MutantStack<T>::container_type::const_iterator cbegin(void);
-        typename MutantStack<T>::container_type::reverse_iterator rbegin(void);
-        typename MutantStack<T>::container_type::const_reverse_iterator crbegin(void);
+        typedef typename Container::iterator iterator;
+        iterator begin(void);
+        iterator end(void);
         
-        typename MutantStack<T>::container_type::iterator end(void);
-        typename MutantStack<T>::container_type::const_iterator cend(void);
-        typename MutantStack<T>::container_type::reverse_iterator rend(void);
-        typename MutantStack<T>::container_type::const_reverse_iterator crend(void);
+        typedef typename Container::const_iterator const_iterator;
+        const_iterator begin(void) const;
+        const_iterator end(void) const;
+        const_iterator cbegin(void) const;
+        const_iterator cend(void) const;
 
+        typedef typename Container::reverse_iterator reverse_iterator;
+        reverse_iterator rbegin(void);
+        reverse_iterator rend(void);
+
+        typedef typename Container::const_reverse_iterator const_reverse_iterator;
+        const_reverse_iterator rbegin(void) const;
+        const_reverse_iterator rend(void) const;
+        const_reverse_iterator crbegin(void) const;
+        const_reverse_iterator crend(void) const;
 };
 
 # include "MutantStack.tpp"
