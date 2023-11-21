@@ -6,11 +6,11 @@
 #    By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/11 04:36:19 by hyungjpa          #+#    #+#              #
-#    Updated: 2023/11/12 07:08:53 by hyungjpa         ###   ########.fr        #
+#    Updated: 2023/11/21 08:48:37 by hyungjpa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCNAME = main
+SRCNAME = main Span
 
 SRC = $(addsuffix .cpp, $(SRCNAME))
 

@@ -6,45 +6,61 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 13:04:04 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/11/18 20:05:41 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/11/21 11:09:36 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef span_HPP
-# define span_HPP
+#ifndef Span_HPP
+# define Span_HPP
 
 # include <algorithm>
 # include <exception>
 # include <vector>
 # include <limits>
+# include <utility>
+# include <iostream>
+# include <ctime>
+# include <random>
 
 class Span
 {
     private:
-        span(void);
+        Span(void);
         std::vector<int> _vector;
+        unsigned int _vSize;
+        unsigned int _idx;
         
     public:
-        span(unsinged int n);
-        span(const span& src);
-        virtual ~span(void);
-        span& operator=(span const& rhs);
+        Span(unsigned int n);
+        Span(const Span& src);
+        virtual ~Span(void);
+        Span& operator=(Span const& rhs);
 
         void addNumber(int n);
-        const unsigned int shortestSpan(void) const;
-        const unsigned int longestSpan(void) const;
+        unsigned int shortestSpan(void) const;
+        unsigned int longestSpan(void) const;
+        
+        std::vector<int>::iterator getBegin(void);
+        std::vector<int>::iterator getEnd(void);
+
+        void fillSpan(std::vector<int>::iterator first, std::vector<int>::iterator last);
+
+        void printAll(void) const;
 
         class FullSpanException: public std::exception
         {
             const char *what(void) const throw();
-        }
+        };
         
         class NoSpanException: public std::exception
         {
             const char *what(void) const throw();
-        }
-
+        };
         
+        class NotEmptyException: public std::exception
+        {
+            const char *what(void) const throw();
+        };
 };
 
 #endif
