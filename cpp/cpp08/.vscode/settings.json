@@ -60,7 +60,11 @@
         "typeinfo": "cpp",
         "unordered_map": "cpp",
         "utility": "cpp",
-        "span": "cpp"
+        "span": "cpp",
+        "deque": "cpp",
+        "list": "cpp",
+        "stack": "cpp",
+        "*.tpp": "cpp"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }
