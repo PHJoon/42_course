@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 13:04:04 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/11/22 09:00:01 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/11/22 09:03:26 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <utility>
 # include <iostream>
 # include <ctime>
-# include <csdlib>
+# include <cstdlib>
 
 class Span
 {
