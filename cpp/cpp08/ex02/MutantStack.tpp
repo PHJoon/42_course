@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 11:10:38 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/11/22 07:50:49 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/11/22 09:02:50 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ MutantStack<T, Container>::MutantStack(void)
 template<typename T, class Container>
 MutantStack<T, Container>::MutantStack(const MutantStack<T, Container>& src)
 {
-    (void)src;
+    this->c = src.c;
 }
 
 template<typename T, class Container>
@@ -31,7 +31,7 @@ MutantStack<T, Container>::~MutantStack(void)
 template<typename T, class Container>
 MutantStack<T, Container>& MutantStack<T, Container>::operator=(MutantStack<T, Container> const& rhs)
 {
-    (void)rhs;
+    this->c = rhs.c;
     return *this;
 }
 
