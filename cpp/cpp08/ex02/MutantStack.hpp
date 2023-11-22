@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 11:10:41 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/11/22 07:38:35 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/11/22 09:08:32 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,6 @@ class MutantStack: public std::stack<T, Container>
         typedef typename Container::const_iterator const_iterator;
         const_iterator begin(void) const;
         const_iterator end(void) const;
-        const_iterator cbegin(void) const;
-        const_iterator cend(void) const;
 
         typedef typename Container::reverse_iterator reverse_iterator;
         reverse_iterator rbegin(void);
@@ -43,8 +41,6 @@ class MutantStack: public std::stack<T, Container>
         typedef typename Container::const_reverse_iterator const_reverse_iterator;
         const_reverse_iterator rbegin(void) const;
         const_reverse_iterator rend(void) const;
-        const_reverse_iterator crbegin(void) const;
-        const_reverse_iterator crend(void) const;
 };
 
 # include "MutantStack.tpp"

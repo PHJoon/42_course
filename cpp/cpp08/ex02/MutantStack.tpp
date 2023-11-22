@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 11:10:38 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/11/22 09:02:50 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/11/22 09:09:01 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,18 +60,6 @@ typename MutantStack<T, Container>::const_iterator MutantStack<T, Container>::en
 }
 
 template<typename T, class Container>
-typename MutantStack<T, Container>::const_iterator MutantStack<T, Container>::cbegin(void) const
-{
-    return this->c.cbegin();
-}
-
-template<typename T, class Container>
-typename MutantStack<T, Container>::const_iterator MutantStack<T, Container>::cend(void) const
-{
-    return this->c.cend();
-}
-
-template<typename T, class Container>
 typename MutantStack<T, Container>::reverse_iterator MutantStack<T, Container>::rbegin(void)
 {
     return this->c.rbegin();
@@ -95,14 +83,3 @@ typename MutantStack<T, Container>::const_reverse_iterator MutantStack<T, Contai
     return this->c.rend();
 }
 
-template<typename T, class Container>
-typename MutantStack<T, Container>::const_reverse_iterator MutantStack<T, Container>::crbegin(void) const
-{
-    return this->c.crbegin();
-}
-
-template<typename T, class Container>
-typename MutantStack<T, Container>::const_reverse_iterator MutantStack<T, Container>::crend(void) const
-{
-    return this->c.crend();
-}
