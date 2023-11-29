@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 09:49:29 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/11/28 11:50:19 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/11/29 16:35:43 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,17 @@
 # include <cstdlib>
 # include <limits>
 
+typedef std::vector<int>::iterator vecIter;
+typedef std::list<int>::iterator listIter;
+
 class PmergeMe
 {
     private:
-        std::vector<int>    _vector;
-        std::list<int>  _list;       
+        std::vector<int>    _beforeVec;
+        std::vector<int>    _afterVec;
 
-        std::vector<int> _before;
-        std::vector<int> _after;
+        std::list<int>      _beforeList;
+        std::list<int>      _afterList;
 
     public:
         PmergeMe(void);
@@ -36,13 +39,6 @@ class PmergeMe
         ~PmergeMe(void);
         PmergeMe& operator=(PmergeMe const& rhs);
 
-
-        bool    setBefore(int ac, const char **argv);
-
-        void    getBefore(void) const;
-        void    getAfter(void) const;
-        void    displayVectorTime(void) const;
-        void    displayListTime(void) const;
 
 
         
