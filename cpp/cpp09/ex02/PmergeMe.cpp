@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 09:49:27 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/12/13 18:13:42 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/12/13 19:44:45 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,36 @@ PmergeMe::PmergeMe(void)
 {
 }
 
+PmergeMe::PmergeMe(int ac, char **av)
+{
+// 예외처리
+    if (!checkArgs(ac, av))
+    {
+        throw InvalidArgsException();
+    }
+
+// 정렬 실행
+    clock_t start, finish;
+
+    VEC v(_originVec);
+    start = clock();
+    _sorteVec = fordJohnson(v);
+    finish = clock();
+
+    _vecDuration = static_cast<double>(finish - start) / 1000000;
+
+    std::cout << "before: ";
+    display(_originVec);
+    std::cout << "after:  ";
+    display(_sorteVec);
+
+    std::cout << _vecDuration << std::endl;
+    
+}
+
 PmergeMe::PmergeMe(const PmergeMe& src)
 {
+    (void)src;
 }
 
 PmergeMe::~PmergeMe(void)
@@ -26,18 +54,63 @@ PmergeMe::~PmergeMe(void)
 
 PmergeMe& PmergeMe::operator=(PmergeMe const& rhs)
 {
-    if (this != &rhs)
-    {
-    }
+    (void)rhs;
+    // if (this != &rhs)
+    // {
+    // }
     return *this;
 }
 
 void PmergeMe::display(VEC &v)
 {
-    for (int i = 0; i < v.size(); i++)
+    for (std::size_t i = 0; i < v.size(); i++)
     {
-        std::cout << v[i] << (i == v.size() - 1 ? "\n" : " | ");
+        std::cout << v[i];
+        if (i == v.size() - 1)
+        {
+            std::cout << std::endl;
+        }
+        else
+        {
+            std::cout << " ";
+        }
     }
+}
+
+bool PmergeMe::checkArgs(int ac, char **av)
+{
+    for (int i = 1; i < ac; i++)
+    {
+        std::string tmp(av[i]);
+        for (std::size_t i = 0; i < tmp.length(); i++) 
+        {
+            if (!std::isdigit(tmp[i]))
+            {
+                return false;
+            }
+        }
+    }
+
+    for (int i = 1; i < ac; i++)
+    {
+        long long   tmp = std::atoll(av[i]);
+        std::cout << tmp << std::endl;
+        if (tmp <= 0 || tmp > std::numeric_limits<int>::max())
+        {
+            return false;
+        }
+        else
+        {
+            _originVec.push_back(static_cast<int>(tmp));
+        }
+    }
+
+    std::set<int>    vecToSet(_originVec.begin(), _originVec.end());
+    if (vecToSet.size() != _originVec.size())
+    {
+        return false;
+    }
+    return true;
 }
 
 
@@ -118,7 +191,6 @@ VEC PmergeMe::fordJohnson(VEC &vec)
     if (vec.size() == 1)
         return vec;
 
-    display(vec);
 
     // 홀수배열이라면 마지막 빼고 진행 후 끝에 다시 추가
     int remain = -1;
@@ -128,7 +200,6 @@ VEC PmergeMe::fordJohnson(VEC &vec)
         vec.pop_back();
     }
 
-    std::cout << "remain: " << remain << std::endl;
     // main , pend 나누기
     std::vector<int> main, pend;
 
@@ -146,7 +217,6 @@ VEC PmergeMe::fordJohnson(VEC &vec)
         main.push_back(*(it));
         pairVec.push_back(std::make_pair(*(it), *(it + 1)));
     }
-
 
     // main 정렬
     // std::cout << "\nmain Start\n";
@@ -173,26 +243,24 @@ VEC PmergeMe::fordJohnson(VEC &vec)
     result.push_back(pend[0]);
     result.push_back(main[0]);
 
-    for (int i = 1; i < vecSize; i++)
+    for (std::size_t i = 1; i < vecSize; i++)
     {
         int jac1 = jacob[i - 1] - 1;
         int jac2 = jacob[i] - 1;
 
-        if (jac1 > pend.size() - 1)
+        if (jac1 > (int)pend.size() - 1)
         {
             break;
         }
 
-        if (jac2 > pend.size() - 1)
+        if (jac2 > (int)pend.size() - 1)
         {
-            jac2 = pend.size() - 1;
+            jac2 = (int)pend.size() - 1;
         }
 
         for (int j = jac1 + 1; j <= jac2; j++)
         {
             result.push_back(main[j]);
-            std::cout << "result: " << std::endl;
-            display(result);
         }
         for (int k = jac2; k > jac1; k--)
         {

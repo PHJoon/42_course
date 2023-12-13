@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 09:49:29 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/12/13 18:12:30 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/12/13 19:29:36 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,12 @@
 # include <algorithm>
 # include <vector>
 # include <list>
+# include <set>
 # include <string>
 # include <cstdlib>
 # include <limits>
-# include <functional>
-# include <cmath>
+# include <exception>
+# include <ctime>
 
 typedef std::vector<int> VEC;
 typedef std::vector<int>::iterator VECITER;
@@ -34,7 +35,9 @@ class PmergeMe
         VEC _originVec;
         VEC _sorteVec;
 
-        VEC jacobsthalVec;
+        VEC _jacobsthalVec;
+
+        double  _vecDuration;
 
         PmergeMe(void);
     public:
@@ -57,6 +60,18 @@ class PmergeMe
         
 
         void display(VEC &v);
+
+        class   InvalidArgsException: std::exception
+        {
+            public:
+                const char *what(void) const throw()
+                {
+                    return "Error";
+                }
+                
+        };
+
 };
+
 
 #endif
