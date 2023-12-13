@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 09:49:27 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/12/13 20:27:23 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/12/13 21:44:21 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ PmergeMe::PmergeMe(int ac, char **av)
 
     VEC v(_originVec);
     start = clock();
-    _sorteVec = fordJohnson(v);
+    _sortedVec = fordJohnsonVector(v);
     finish = clock();
 
     _vecDuration = static_cast<double>(finish - start) / CLOCKS_PER_SEC;
@@ -37,7 +37,7 @@ PmergeMe::PmergeMe(int ac, char **av)
     std::cout << "before:  ";
     display(_originVec);
     std::cout << "after:   ";
-    display(_sorteVec);
+    display(_sortedVec);
 
     std::cout << std::fixed << std::setprecision(5) << "Time to process a range of " << _originVec.size() <<  " elements with std::vector : "
     << _vecDuration << " us" << std::endl;
@@ -98,7 +98,9 @@ bool PmergeMe::checkArgs(int ac, char **av)
         }
         else
         {
-            _originVec.push_back(static_cast<int>(tmp));
+            int num = static_cast<int>(tmp);
+            _originVec.push_back(num);
+            _originList.push_back(num);
         }
     }
 
@@ -176,7 +178,7 @@ VEC PmergeMe::pendSortByMain(VEC &main, VECPAIR &pairVec)
 
 VEC jacob = jacobsthal(20);
 
-VEC PmergeMe::fordJohnson(VEC &vec)
+VEC PmergeMe::fordJohnsonVector(VEC &vec)
 {
     std::size_t vecSize = vec.size();
 
@@ -212,7 +214,7 @@ VEC PmergeMe::fordJohnson(VEC &vec)
     // main 정렬
     // std::cout << "\nmain Start\n";
 
-    main = fordJohnson(main);
+    main = fordJohnsonVector(main);
 
     // std::cout << "\nmain End\n";
 

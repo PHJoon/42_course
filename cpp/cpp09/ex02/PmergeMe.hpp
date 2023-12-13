@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 09:49:29 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/12/13 20:27:35 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/12/13 21:44:25 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,25 @@ typedef std::vector<int>::iterator VECITER;
 typedef std::vector<std::pair<int, int> > VECPAIR;
 typedef std::vector<std::pair<int, int> >::iterator VECPAIRITER;
 
+typedef std::list<int> LIST;
+typedef std::list<int>::iterator LISTITER;
+typedef std::list<std::pair<int, int> > LISTPAIR;
+typedef std::list<std::pair<int, int> >::iterator LISTPAIRITER;
+
 class PmergeMe
 {
     private:
         VEC _originVec;
-        VEC _sorteVec;
+        VEC _sortedVec;
 
-        VEC _jacobsthalVec;
+        LIST    _originList;
+        LIST    _sortedList;
 
         double  _vecDuration;
+        double  _ListDuration;
+        
+        VEC _jacobsthalVec;
+        LIST _jacobsthalList;
 
         PmergeMe(void);
         PmergeMe(const PmergeMe& src);
@@ -57,7 +67,7 @@ class PmergeMe
         VEC pendSortByMain(VEC &main, VECPAIR &pairVec);
 
         
-        VEC fordJohnson(VEC &v);
+        VEC fordJohnsonVector(VEC &v);
         
 
         void display(VEC &v);
