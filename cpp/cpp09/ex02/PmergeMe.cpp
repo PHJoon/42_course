@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 09:49:27 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/12/13 13:49:10 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/12/13 18:13:42 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,16 @@ PmergeMe& PmergeMe::operator=(PmergeMe const& rhs)
     return *this;
 }
 
-int myLowerBound(std::vector<int> &arr, int len, int target)
+void PmergeMe::display(VEC &v)
+{
+    for (int i = 0; i < v.size(); i++)
+    {
+        std::cout << v[i] << (i == v.size() - 1 ? "\n" : " | ");
+    }
+}
+
+
+int PmergeMe::myLowerBound(VEC &arr, int len, int target)
 {
     int low = 0; 
     int high = len - 1;
@@ -40,11 +49,10 @@ int myLowerBound(std::vector<int> &arr, int len, int target)
     while (low <= high)
     {
         int mid = (low + high) / 2;
-        
         // 검사 범위 반으로 좁혀가기
         if (target < arr[mid])
         {
-            high = mid -1;
+            high = mid - 1;
         }
         else if (target >= arr[mid])
         {
@@ -54,48 +62,32 @@ int myLowerBound(std::vector<int> &arr, int len, int target)
     return high + 1;
 }
 
-
-std::vector<int> jacobsthal(int n)
+VEC jacobsthal(int n)
 {
     std::vector<int> jacobsthalVec;
 
-    jacobsthalVec.push_back(0);
     jacobsthalVec.push_back(1);
     jacobsthalVec.push_back(3);
 
-    for (int i = 3; i < n; i++)
+    for (int i = 2; i < n; i++)
     {
-        jacobsthalVec[i] = std::pow(2, jacobsthalVec[i - 1]) - jacobsthalVec[i - 1];
+        int next;
+        if (i % 2)
+        {
+            next = 2 * jacobsthalVec[i - 1] + 1;
+        }
+        else
+        {
+            next = 2 * jacobsthalVec[i - 1] - 1;
+        }
+        jacobsthalVec.push_back(next);
     }
     return jacobsthalVec;
 }
 
-typedef std::vector<std::pair<int, int>> vecPair;
-
-
-
-std::vector<int>    mainSort(std::vector<int> &main)
+int PmergeMe::findFromPair(VECPAIR &pairVec, int target)
 {
-    std::vector<int> left, right;
-    
-    if (main.size() == 1)
-        return ;
-
-    std::size_t mid = main.size() / 2;
-    
-    left = std::vector<int>(main.begin(), main.begin() + mid);
-    right = std::vector<int>(main.begin() + mid, main.end());
-
-    left = mainSort(left);
-    right = mainSort(right);
-
-    return ;
-    
-}
-
-int findFromPair(vecPair &pairVec, int target)
-{
-    for (vecPair::iterator it = pairVec.begin(); it != pairVec.end(); it++)
+    for (VECPAIRITER it = pairVec.begin(); it != pairVec.end(); it++)
     {
         if ((*it).first == target)
         {
@@ -105,11 +97,11 @@ int findFromPair(vecPair &pairVec, int target)
     return -1;
 }
 
-std::vector<int> pendSortByMain(std::vector<int> &main, std::vector<int> &pend, vecPair &pairVec)
+VEC PmergeMe::pendSortByMain(VEC &main, VECPAIR &pairVec)
 {
-    std::vector<int> result;
+    VEC result;
 
-    for (vecIter it = main.begin(); it != main.end(); it++)
+    for (VECITER it = main.begin(); it != main.end(); it++)
     {
         int pend = findFromPair(pairVec, *it);
         result.push_back(pend);
@@ -117,10 +109,16 @@ std::vector<int> pendSortByMain(std::vector<int> &main, std::vector<int> &pend, 
     return result;
 }
 
+VEC jacob = jacobsthal(20);
 
-void    PmergeMe::execute(std::vector<int> &vec)
+VEC PmergeMe::fordJohnson(VEC &vec)
 {
     std::size_t vecSize = vec.size();
+
+    if (vec.size() == 1)
+        return vec;
+
+    display(vec);
 
     // 홀수배열이라면 마지막 빼고 진행 후 끝에 다시 추가
     int remain = -1;
@@ -130,12 +128,13 @@ void    PmergeMe::execute(std::vector<int> &vec)
         vec.pop_back();
     }
 
+    std::cout << "remain: " << remain << std::endl;
     // main , pend 나누기
     std::vector<int> main, pend;
 
-    vecPair pairVec;
+    VECPAIR pairVec;
 
-    for (vecIter it = vec.begin(); it != vec.end(); it += 2)
+    for (VECITER it = vec.begin(); it != vec.end(); it += 2)
     {
         if (*(it) < *(it + 1))
         {
@@ -148,34 +147,69 @@ void    PmergeMe::execute(std::vector<int> &vec)
         pairVec.push_back(std::make_pair(*(it), *(it + 1)));
     }
 
-    // main 정렬
-    mergeInsertSort(main);
 
+    // main 정렬
+    // std::cout << "\nmain Start\n";
+
+    main = fordJohnson(main);
+
+    // std::cout << "\nmain End\n";
 
     // pair 보고 main에 맞춰서 pend 정렬
-    pend = pendSortByMain(main, pend, pairVec);
+    pend = pendSortByMain(main, pairVec);
 
 
     // main 에 pend 하나씩 삽입 jacobsthal 수에 맞춰서
-    
-    
+
+    // std::cout << "main: \n";
+    // display(main);
+    // std::cout << "pend: \n";
+    // display(pend);
 
 
-    while (main.size() != vecSize)
+    std::vector<int> result;
+
+
+    result.push_back(pend[0]);
+    result.push_back(main[0]);
+
+    for (int i = 1; i < vecSize; i++)
     {
-        
-        
+        int jac1 = jacob[i - 1] - 1;
+        int jac2 = jacob[i] - 1;
+
+        if (jac1 > pend.size() - 1)
+        {
+            break;
+        }
+
+        if (jac2 > pend.size() - 1)
+        {
+            jac2 = pend.size() - 1;
+        }
+
+        for (int j = jac1 + 1; j <= jac2; j++)
+        {
+            result.push_back(main[j]);
+            std::cout << "result: " << std::endl;
+            display(result);
+        }
+        for (int k = jac2; k > jac1; k--)
+        {
+            int position = myLowerBound(result, result.size(), pend[k]);
+            result.insert(result.begin() + position, pend[k]);
+        }
     }
 
     // remain 있으면
     if (remain != -1)
     {
-        
+        int position = myLowerBound(result, result.size(), remain);
+        result.insert(result.begin() + position, remain);
     }
-    
-    
 
+    // std::cout << "result: \n";
+    // display(result);
 
-
-
+    return result;
 }

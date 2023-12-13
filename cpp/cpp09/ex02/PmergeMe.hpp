@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 09:49:29 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/12/13 11:08:42 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/12/13 18:12:30 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,30 +21,42 @@
 # include <cstdlib>
 # include <limits>
 # include <functional>
+# include <cmath>
 
-typedef std::vector<int>::iterator vecIter;
-typedef std::list<int>::iterator listIter;
+typedef std::vector<int> VEC;
+typedef std::vector<int>::iterator VECITER;
+typedef std::vector<std::pair<int, int> > VECPAIR;
+typedef std::vector<std::pair<int, int> >::iterator VECPAIRITER;
 
 class PmergeMe
 {
     private:
-        std::vector<int>    _beforeVec;
-        std::vector<int>    _afterVec;
+        VEC _originVec;
+        VEC _sorteVec;
 
-        std::list<int>      _beforeList;
-        std::list<int>      _afterList;
+        VEC jacobsthalVec;
 
-    public:
         PmergeMe(void);
+    public:
+        PmergeMe(int ac, char **av);
         PmergeMe(const PmergeMe& src);
         ~PmergeMe(void);
         PmergeMe& operator=(PmergeMe const& rhs);
 
+        bool checkArgs(int ac, char **av);
 
 
+        VEC jacobsthal(int n);
+
+        int myLowerBound(VEC &v, int len, int target);
+        int findFromPair(VECPAIR &pairVec, int target);
+        VEC pendSortByMain(VEC &main, VECPAIR &pairVec);
+
         
-        void    execute(void);
+        VEC fordJohnson(VEC &v);
         
+
+        void display(VEC &v);
 };
 
 #endif
