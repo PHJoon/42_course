@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 09:49:29 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/11/29 16:35:43 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/12/13 11:08:42 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <string>
 # include <cstdlib>
 # include <limits>
+# include <functional>
 
 typedef std::vector<int>::iterator vecIter;
 typedef std::list<int>::iterator listIter;

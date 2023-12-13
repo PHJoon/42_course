@@ -3,39 +3,10 @@
 #include <iterator>
 #include <iostream>
 
-typedef std::vector<int> vec;
-typedef std::vector<int>::iterator vecIter;
-
-typedef std::vector<std::pair<int, int> > vecPair;
+typedef std::vector<int> VEC;
+typedef std::vector<int>::iterator VECITER;
 
 
-
-vecPair sortedPair;
-
-int binarySearch(int element, )
-
-
-int biSearchUpperBound(vec v, int s, int e, int find)
-{
-    int m;
-    while (s < e) {
-        m = (s + e) / 2;
-        if (find >= v[m]) s = m + 1;
-        else e = m;
-    }
-    return e;
-}
-
-void    binaryInsertion(int find, int findPair) {
-    int size = sortedPair.size();
-    for (int i = 1; i < size; i++)
-    {
-        int key = v[i];
-        int pos = biSearchUpperBound(v, 0, i, key);
-        std::move(v.begin() + pos, v.begin() + i, v.begin() + pos + 1);
-        v[pos] = key;
-    }
-}
 
 
 
@@ -57,49 +28,39 @@ std::vector<int> jacobsthalVector(int n)
     return vec;
 }
 
-vec jacob = jacobsthalVector(25);
+VEC jacob = jacobsthalVector(25);
 
-void    sort(vec v,  vecIter first, vecIter last, int x)
+void    splitPair(VEC &v, VEC &first, VEC &second)
 {
-    std::ptrdiff_t len = std::distance(first, last);
-
-
-    std::cout << "x = " << x << "  vector => ";
-    for (vecIter it = first; it != last; it++)
-    {
-        std::cout << *it << (it != last - 1 ? " / " : "");
-    }
-    std::cout << "\n";
-
-    vecIter s;
-    vecIter e;
-    if (len % x) {
-        e = last;
-        last -= x / 2;
-        s = last;
-        std::cout << *s << " " << *e << std::endl;
-    }
-
-    for (vecIter it = first; it != last; it += x) {
-        if (*it < *(it + (x / 2))) {
-            for (vecIter tmpIt = it; tmpIt != it + (x / 2); tmpIt++) {
-                std::iter_swap(tmpIt, (tmpIt + (x / 2)));
+    for (VECITER it = v.begin(); it != v.end(); it += 2) {
+        if (it != v.end() - 1) {
+            if (*it > *(it + 1)) {
+                first.push_back(*it);
+                second.push_back(*(it + 1));
+            } else {
+                first.push_back(*(it + 1));
+                second.push_back(*it);
             }
+        } else {
+            second.push_back(*it);
         }
     }
+}
+
+void    sortPair(VEC &v, VEC &first, VEC &second)
+{
     
-    if (len < x * 3) return;
-
-    std::ptrdiff_t tmpLen = std::distance(first, last);
-    if ((tmpLen / x) % 2) {
-        last -= x;
-        tmpLen -= x;
-        s -= x;
-    }
+}
 
 
-    sort(v, first, first + tmpLen / 2, x * 2);
-    sort(v, first + tmpLen / 2, last, x * 2);
+void    sort(VEC v)
+{
+    // pair로 나누기
+    VEC first, second;
+    splitPair(v, first, second);
+
+
+
 
 
     // binary insertion pair
