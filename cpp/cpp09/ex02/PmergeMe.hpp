@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 09:49:29 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/12/13 19:29:36 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/12/13 20:27:35 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define PmergeMe_HPP
 
 # include <iostream>
+# include <iomanip>
 # include <algorithm>
 # include <vector>
 # include <list>
@@ -40,11 +41,11 @@ class PmergeMe
         double  _vecDuration;
 
         PmergeMe(void);
-    public:
-        PmergeMe(int ac, char **av);
         PmergeMe(const PmergeMe& src);
         ~PmergeMe(void);
         PmergeMe& operator=(PmergeMe const& rhs);
+    public:
+        PmergeMe(int ac, char **av);
 
         bool checkArgs(int ac, char **av);
 
@@ -61,7 +62,7 @@ class PmergeMe
 
         void display(VEC &v);
 
-        class   InvalidArgsException: std::exception
+        class   InvalidArgsException: public std::exception
         {
             public:
                 const char *what(void) const throw()

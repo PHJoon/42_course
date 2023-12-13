@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 09:49:27 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/12/13 19:44:45 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/12/13 20:27:23 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,21 +25,22 @@ PmergeMe::PmergeMe(int ac, char **av)
     }
 
 // 정렬 실행
-    clock_t start, finish;
+    std::clock_t start, finish;
 
     VEC v(_originVec);
     start = clock();
     _sorteVec = fordJohnson(v);
     finish = clock();
 
-    _vecDuration = static_cast<double>(finish - start) / 1000000;
+    _vecDuration = static_cast<double>(finish - start) / CLOCKS_PER_SEC;
 
-    std::cout << "before: ";
+    std::cout << "before:  ";
     display(_originVec);
-    std::cout << "after:  ";
+    std::cout << "after:   ";
     display(_sorteVec);
 
-    std::cout << _vecDuration << std::endl;
+    std::cout << std::fixed << std::setprecision(5) << "Time to process a range of " << _originVec.size() <<  " elements with std::vector : "
+    << _vecDuration << " us" << std::endl;
     
 }
 
@@ -55,9 +56,6 @@ PmergeMe::~PmergeMe(void)
 PmergeMe& PmergeMe::operator=(PmergeMe const& rhs)
 {
     (void)rhs;
-    // if (this != &rhs)
-    // {
-    // }
     return *this;
 }
 
@@ -94,7 +92,6 @@ bool PmergeMe::checkArgs(int ac, char **av)
     for (int i = 1; i < ac; i++)
     {
         long long   tmp = std::atoll(av[i]);
-        std::cout << tmp << std::endl;
         if (tmp <= 0 || tmp > std::numeric_limits<int>::max())
         {
             return false;
@@ -105,11 +102,6 @@ bool PmergeMe::checkArgs(int ac, char **av)
         }
     }
 
-    std::set<int>    vecToSet(_originVec.begin(), _originVec.end());
-    if (vecToSet.size() != _originVec.size())
-    {
-        return false;
-    }
     return true;
 }
 
@@ -190,7 +182,6 @@ VEC PmergeMe::fordJohnson(VEC &vec)
 
     if (vec.size() == 1)
         return vec;
-
 
     // 홀수배열이라면 마지막 빼고 진행 후 끝에 다시 추가
     int remain = -1;
