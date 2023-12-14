@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 09:49:27 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/12/14 09:07:50 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/12/14 09:19:28 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -262,14 +262,14 @@ VEC PmergeMe::fordJohnsonVector(VEC &v)
         int jac1 = _jacobsthalVec[i - 1] - 1;
         int jac2 = _jacobsthalVec[i] - 1;
 
-        if (jac1 > (int)pending.size() - 1)
+        if (jac1 > static_cast<int>(pending.size()) - 1)
         {
             break;
         }
 
-        if (jac2 > (int)pending.size() - 1)
+        if (jac2 > static_cast<int>(pending.size()) - 1)
         {
-            jac2 = (int)pending.size() - 1;
+            jac2 = static_cast<int>(pending.size()) - 1;
         }
 
         for (int j = jac1 + 1; j <= jac2; j++)
@@ -445,14 +445,14 @@ LIST PmergeMe::fordJohnsonList(LIST &l)
         int jac1 = *(it1) - 1;
         int jac2 = *(it2) - 1;
 
-        if (jac1 > (int)pending.size() - 1)
+        if (jac1 > static_cast<int>(pending.size()) - 1)
         {
             break;
         }
 
-        if (jac2 > (int)pending.size() - 1)
+        if (jac2 > static_cast<int>(pending.size()) - 1)
         {
-            jac2 = (int)pending.size() - 1;
+            jac2 = static_cast<int>(pending.size()) - 1;
         }
 
         for (int j = jac1 + 1; j <= jac2; j++)
