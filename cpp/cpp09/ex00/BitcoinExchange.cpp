@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 13:37:08 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/12/14 09:25:11 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/12/14 13:10:42 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ void    BitcoinExchange::displayValue(std::string file)
             } else if (!checkValue(value)) {
                 continue ;
             } else {
-                std::map<std::string, float>::iterator lb = _db.lower_bound(key);
+                std::map<std::string, float>::iterator lb = _db.upper_bound(key);
                 if (lb != _db.begin()) {
                     if (lb->first > key) lb--;
                     std::cout << key << " => " << value << " = " <<  stringToFloat(value) * (lb->second) << std::endl;
