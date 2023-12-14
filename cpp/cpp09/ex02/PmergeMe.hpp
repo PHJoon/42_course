@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 09:49:29 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/12/13 21:44:25 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/12/14 09:06:22 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,32 +45,37 @@ class PmergeMe
         LIST    _sortedList;
 
         double  _vecDuration;
-        double  _ListDuration;
+        double  _listDuration;
         
         VEC _jacobsthalVec;
         LIST _jacobsthalList;
 
         PmergeMe(void);
         PmergeMe(const PmergeMe& src);
-        ~PmergeMe(void);
         PmergeMe& operator=(PmergeMe const& rhs);
-    public:
-        PmergeMe(int ac, char **av);
-
+        
         bool checkArgs(int ac, char **av);
 
+        void setOriginVec(int ac, char **av);
+        void setOriginList(int ac, char **av);
 
-        VEC jacobsthal(int n);
-
-        int myLowerBound(VEC &v, int len, int target);
-        int findFromPair(VECPAIR &pairVec, int target);
-        VEC pendSortByMain(VEC &main, VECPAIR &pairVec);
-
-        
+        VEC jacobsthalVector(int n);
+        int myLowerBoundVector(VEC &v, int len, int target);
+        int findFromPairVector(VECPAIR &pairVec, int target);
+        VEC pendSortByMainVector(VEC &main, VECPAIR &pairVec);
         VEC fordJohnsonVector(VEC &v);
-        
+        void displayVector(VEC &v);
 
-        void display(VEC &v);
+        LIST jacobsthalList(int n);
+        int myLowerBoundList(LIST &l, int len, int target);
+        int findFromPairList(LISTPAIR &pairList, int target);
+        LIST pendSortByMainList(LIST &main, LISTPAIR &pairList);
+        LIST fordJohnsonList(LIST &l);
+        void displayList(LIST &l);
+    
+    public:
+        PmergeMe(int ac, char **av);
+        ~PmergeMe(void);
 
         class   InvalidArgsException: public std::exception
         {
@@ -79,7 +84,6 @@ class PmergeMe
                 {
                     return "Error";
                 }
-                
         };
 
 };
