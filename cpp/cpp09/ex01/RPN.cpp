@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 16:57:12 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/11/28 09:48:18 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/12/14 10:01:11 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ RPN::RPN(void)
 
 RPN::RPN(const RPN& src)
 {
-    _stack = src._stack;
+    (void)src;
 }
 
 RPN::~RPN(void)
@@ -27,10 +27,7 @@ RPN::~RPN(void)
 
 RPN& RPN::operator=(RPN const& rhs)
 {
-    if (this != &rhs)
-    {
-        this->_stack = rhs._stack;
-    }
+    (void)rhs;
     return *this;
 }
 

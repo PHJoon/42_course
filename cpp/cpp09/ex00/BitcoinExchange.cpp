@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 13:37:08 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/11/24 16:56:13 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/12/14 09:25:11 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ BitcoinExchange::BitcoinExchange(void)
 
 BitcoinExchange::BitcoinExchange(const BitcoinExchange& src)
 {
-    _db = src._db;
+    (void)src;
 }
 
 BitcoinExchange::~BitcoinExchange(void)
@@ -28,10 +28,7 @@ BitcoinExchange::~BitcoinExchange(void)
 
 BitcoinExchange& BitcoinExchange::operator=(BitcoinExchange const& rhs)
 {
-    if (this != &rhs)
-    {
-        _db = rhs._db;
-    }
+    (void)rhs;
     return *this;
 }
 
@@ -47,11 +44,11 @@ float   BitcoinExchange::stringToFloat(const std::string &input)
 bool    BitcoinExchange::checkValue(const std::string &input)
 {
     if (input.find('.') == std::string::npos) {
-        int iTmp = std::atoi(input.c_str());
-        if (iTmp < 0) {
+        long long llTmp = std::atoll(input.c_str());
+        if (llTmp < 0) {
             std::cout << "Error: not a positive number." << std::endl;
             return false;
-        } else if (iTmp > 1000) {
+        } else if (llTmp > 1000) {
             std::cout << "Error: too large number." << std::endl;
             return false;
         }

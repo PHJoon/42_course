@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 09:49:27 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/12/14 09:19:28 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/12/14 10:56:27 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -244,7 +244,12 @@ VEC PmergeMe::fordJohnsonVector(VEC &v)
     }
 
     // main만 다시 재귀적으로 정렬
+    
+    // std::cout << "main\n";
+    // displayVector(mainChain);
+    // std::cout << "main start\n";
     mainChain = fordJohnsonVector(mainChain);
+    // std::cout << "\nmain end\n";
 
     // 정렬된 main에 맞춰 pend도 정렬
     pending = pendSortByMainVector(mainChain, pairVec);
@@ -252,6 +257,10 @@ VEC PmergeMe::fordJohnsonVector(VEC &v)
     // main을 result 배열에 삽입(main은 이미 정렬되어 있음)
     // pend를 하나씩 야콥스탈 수에 맞춰서 result에 삽입(최소한의 탐색을 위해)
 
+    // std::cout << "main\n";
+    // displayVector(mainChain);
+    // std::cout << "pend\n";
+    // displayVector(pending);
     VEC result;
 
     result.push_back(pending[0]);
@@ -275,21 +284,29 @@ VEC PmergeMe::fordJohnsonVector(VEC &v)
         for (int j = jac1 + 1; j <= jac2; j++)
         {
             result.push_back(mainChain[j]);
+            // std::cout << "result\n";
+            // displayVector(result);
         }
         for (int k = jac2; k > jac1; k--)
         {
             int position = myLowerBoundVector(result, result.size(), pending[k]);
             result.insert(result.begin() + position, pending[k]);
+            // std::cout << "result\n";
+            // displayVector(result);
         }
     }
 
     // 처음에 빼둔 remain 삽입
     if (remain != -1)
     {
+        // std::cout << "remain\n";
+        // std::cout << remain << std::endl;
         int position = myLowerBoundVector(result, result.size(), remain);
         result.insert(result.begin() + position, remain);
     }
 
+    // std::cout << "result\n";
+    // displayVector(result);
     return result;
 }
 

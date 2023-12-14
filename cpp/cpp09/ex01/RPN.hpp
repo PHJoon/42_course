@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 16:57:17 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/11/28 10:53:14 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/12/14 10:01:02 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ class RPN
 {
     private:
         std::stack<int> _stack;
+        RPN(const RPN& src);
+        RPN& operator=(RPN const& rhs);
     public:
         RPN(void);
-        RPN(const RPN& src);
-        virtual ~RPN(void);
-        RPN& operator=(RPN const& rhs);
+        ~RPN(void);
 
         token   operationCheck(char c);
         int stackPop(void);

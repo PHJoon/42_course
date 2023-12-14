@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 13:37:01 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/11/24 16:05:58 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/12/14 09:22:44 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,13 @@ class BitcoinExchange
         float   stringToFloat(const std::string &input);
         bool    checkValue(const std::string &input);
 
+        BitcoinExchange(const BitcoinExchange& src);
+        BitcoinExchange& operator=(BitcoinExchange const& rhs);
     public:
         BitcoinExchange(void);
-        BitcoinExchange(const BitcoinExchange& src);
         ~BitcoinExchange(void);
-        BitcoinExchange& operator=(BitcoinExchange const& rhs);
-
         void    displayValue(std::string file);
+
 
 };
 
