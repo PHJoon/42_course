@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 13:37:08 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/12/14 13:10:42 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/12/17 16:53:29 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,26 @@ float   BitcoinExchange::stringToFloat(const std::string &input)
     return ret;
 }
 
+bool    BitcoinExchange::digitCheck(const std::string &input)
+{
+    for (std::size_t i = 0; i < input.length(); i++)
+    {
+        if (!std::isdigit(input[i]))
+        {
+            return false;
+        }
+    }
+    return true;
+}
+
 bool    BitcoinExchange::checkValue(const std::string &input)
 {
+    if (input == "\0")
+    {
+        std::cout << "Error: bad input => " << input << std::endl;
+        return false;
+    }
+
     if (input.find('.') == std::string::npos) {
         long long llTmp = std::atoll(input.c_str());
         if (llTmp < 0) {
@@ -51,10 +69,18 @@ bool    BitcoinExchange::checkValue(const std::string &input)
         } else if (llTmp > 1000) {
             std::cout << "Error: too large number." << std::endl;
             return false;
+        } else if (!digitCheck(input)) {
+            std::cout << "Error: bad input => " << input << std::endl;
+            return false;
         }
         return true;
     } else {
-        float fTmp = stringToFloat(input);
+        char *end = NULL;
+        float fTmp = std::strtof(input.c_str(), &end);
+        if (end[0] != '\0') {
+            std::cout << "Error: bad input => " << input << std::endl;
+            return false;
+        }
         if (fTmp < 0) {
             std::cout << "Error: not a positive number." << std::endl;
             return false;
@@ -108,6 +134,11 @@ void    BitcoinExchange::displayValue(std::string file)
             key = line.substr(0, idx);
             value = line.substr(idx + 3);
 
+            if (idx == std::string::npos) {
+                std::cout << "Error: bad input => " << line << std::endl;
+                continue ;
+            }
+
             if (strptime(key.c_str(), "%Y-%m-%d", &st_tm) == NULL) {
                 std::cout << "Error: bad input => " << key << std::endl;
             } else if (!checkValue(value)) {
@@ -126,6 +157,3 @@ void    BitcoinExchange::displayValue(std::string file)
         std::cout << "Error: infile open error" << std::endl;
     }
 }
-
-
-

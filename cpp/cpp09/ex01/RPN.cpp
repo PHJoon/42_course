@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 16:57:12 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/12/14 10:01:11 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/12/17 16:54:59 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,10 @@ bool RPN::calculate(const std::string &input)
         } else {
             return false;
         }
+    }
+    if (_stack.size() != 1)
+    {
+        return false;
     }
     return true;
 }
