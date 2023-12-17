@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 09:49:27 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/12/17 09:56:35 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/12/17 13:10:37 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,10 @@ PmergeMe::PmergeMe(int ac, char **av)
     std::cout << "after:   ";
     displayVector(_sortedVec);
     
-    std::cout << "before:  ";
-    displayList(_originList);
-    std::cout << "after:   ";
-    displayList(_sortedList);
+    // std::cout << "before:  ";
+    // displayList(_originList);
+    // std::cout << "after:   ";
+    // displayList(_sortedList);
 
     std::cout << std::fixed << std::setprecision(5) << "Time to process a range of " << _originVec.size() <<  " elements with std::vector : "
     << _vecDuration << "s" << std::endl;
