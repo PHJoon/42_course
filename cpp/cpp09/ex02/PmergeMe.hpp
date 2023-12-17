@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 09:49:29 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/12/14 09:06:22 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/12/17 09:55:01 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,14 +61,17 @@ class PmergeMe
 
         VEC jacobsthalVector(int n);
         int myLowerBoundVector(VEC &v, int len, int target);
-        int findFromPairVector(VECPAIR &pairVec, int target);
+        int findFirstFromPairVector(VECPAIR &pairVec, int target);
+        int findSecondFromPairVector(VECPAIR &pairVec, int target);
         VEC pendSortByMainVector(VEC &main, VECPAIR &pairVec);
         VEC fordJohnsonVector(VEC &v);
         void displayVector(VEC &v);
 
         LIST jacobsthalList(int n);
         int myLowerBoundList(LIST &l, int len, int target);
-        int findFromPairList(LISTPAIR &pairList, int target);
+        int findFirstFromPairList(LISTPAIR &pairList, int target);
+        int findSecondFromPairList(LISTPAIR &pairList, int target);
+        int getSearchSize(LIST &l, int target);
         LIST pendSortByMainList(LIST &main, LISTPAIR &pairList);
         LIST fordJohnsonList(LIST &l);
         void displayList(LIST &l);

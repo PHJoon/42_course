@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 09:49:27 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/12/14 10:56:27 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/12/17 09:56:35 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,10 @@ PmergeMe::PmergeMe(int ac, char **av)
     std::cout << "after:   ";
     displayVector(_sortedVec);
     
-    // std::cout << "before:  ";
-    // displayList(_originList);
-    // std::cout << "after:   ";
-    // displayList(_sortedList);
+    std::cout << "before:  ";
+    displayList(_originList);
+    std::cout << "after:   ";
+    displayList(_sortedList);
 
     std::cout << std::fixed << std::setprecision(5) << "Time to process a range of " << _originVec.size() <<  " elements with std::vector : "
     << _vecDuration << "s" << std::endl;
@@ -184,8 +184,20 @@ VEC PmergeMe::jacobsthalVector(int n)
     return jacobsthalVec;
 }
 
-// pair에서 짝지어진 작은 값 찾기
-int PmergeMe::findFromPairVector(VECPAIR &pairVec, int target)
+// pair에서 짝지어진 값 찾기
+int PmergeMe::findFirstFromPairVector(VECPAIR &pairVec, int target)
+{
+    for (VECPAIRITER it = pairVec.begin(); it != pairVec.end(); it++)
+    {
+        if ((*it).second == target)
+        {
+            return (*it).first;
+        }
+    }
+    return -1;
+}
+
+int PmergeMe::findSecondFromPairVector(VECPAIR &pairVec, int target)
 {
     for (VECPAIRITER it = pairVec.begin(); it != pairVec.end(); it++)
     {
@@ -204,7 +216,7 @@ VEC PmergeMe::pendSortByMainVector(VEC &mainChain, VECPAIR &pairVec)
 
     for (VECITER it = mainChain.begin(); it != mainChain.end(); it++)
     {
-        int pending = findFromPairVector(pairVec, *it);
+        int pending = findSecondFromPairVector(pairVec, *it);
         result.push_back(pending);
     }
     return result;
@@ -289,7 +301,10 @@ VEC PmergeMe::fordJohnsonVector(VEC &v)
         }
         for (int k = jac2; k > jac1; k--)
         {
-            int position = myLowerBoundVector(result, result.size(), pending[k]);
+            int endOfSearch = findFirstFromPairVector(pairVec, pending[k]);
+            int searchSize = std::find(result.begin(), result.end(), endOfSearch) - result.begin();
+            
+            int position = myLowerBoundVector(result, searchSize + 1, pending[k]);
             result.insert(result.begin() + position, pending[k]);
             // std::cout << "result\n";
             // displayVector(result);
@@ -377,8 +392,20 @@ LIST PmergeMe::jacobsthalList(int n)
     return jacobsthalLst;
 }
 
-// pair에서 짝지어진 작은 값 찾기
-int PmergeMe::findFromPairList(LISTPAIR &pairList, int target)
+// pair에서 짝지어진 값 찾기
+int PmergeMe::findFirstFromPairList(LISTPAIR &pairList, int target)
+{
+    for (LISTPAIRITER it = pairList.begin(); it != pairList.end(); it++)
+    {
+        if ((*it).second == target)
+        {
+            return (*it).first;
+        }
+    }
+    return -1;
+}
+
+int PmergeMe::findSecondFromPairList(LISTPAIR &pairList, int target)
 {
     for (LISTPAIRITER it = pairList.begin(); it != pairList.end(); it++)
     {
@@ -390,6 +417,21 @@ int PmergeMe::findFromPairList(LISTPAIR &pairList, int target)
     return -1;
 }
 
+
+int PmergeMe::getSearchSize(LIST &l, int target)
+{
+    int i = 0;
+    for (LISTITER it = l.begin(); it != l.end(); it++)
+    {
+        if (*it == target)
+        {
+            return i;
+        }
+        i++;
+    }
+    return -1;
+}
+
 // 정렬된 main에 맞춰 pend도 정렬
 LIST PmergeMe::pendSortByMainList(LIST &mainChain, LISTPAIR &pairList)
 {
@@ -397,7 +439,7 @@ LIST PmergeMe::pendSortByMainList(LIST &mainChain, LISTPAIR &pairList)
 
     for (LISTITER it = mainChain.begin(); it != mainChain.end(); it++)
     {
-        int pending = findFromPairList(pairList, *it);
+        int pending = findSecondFromPairList(pairList, *it);
         result.push_back(pending);
     }
     return result;
@@ -482,7 +524,11 @@ LIST PmergeMe::fordJohnsonList(LIST &l)
         {
             LISTITER tmpP = pending.begin();
             std::advance(tmpP, k);
-            int position = myLowerBoundList(result, result.size(), *tmpP);
+            
+            int endOfSearch = findFirstFromPairList(pairList, *tmpP);
+            int searchSize = getSearchSize(result, endOfSearch);
+            
+            int position = myLowerBoundList(result, searchSize + 1, *tmpP);
             LISTITER tmpR = result.begin();
             std::advance(tmpR, position);
             result.insert(tmpR, *tmpP);
