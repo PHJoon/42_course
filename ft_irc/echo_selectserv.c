@@ -34,7 +34,11 @@
 :irc.local 372 hj :- *  server.                                       *\n\
 :irc.local 372 hj :- **************************************************\n\
 :irc.local 372 hj :- (The sysadmin possibly wants to edit </etc/inspircd/inspircd.motd>)\n\
-:irc.local 376 hj :End of message of the day."
+:irc.local 376 hj :End of message of the day.\n\
+:irc.local PRIVMSG hi :*** Raw I/O logging is enabled on this server. All messages, passwords, and commands are being recorded."
+
+#define MODE ":hi!root@127.0.0.1 MODE hi :+i"
+#define PONG ":irc.local PONG irc.local :irc.local"
 
 
 void error_handling(char *message) {
@@ -113,7 +117,13 @@ int main(int ac, char **av) {
                             write(i, WELCOME, strlen(WELCOME));
                             flag = 1;
                         }
-                        write(i, buf, str_len);
+                        if (!strcmp(buf, "MODE hi +i")) {
+                            write(i, MODE, strlen(MODE));
+                        } else if (!strcmp(buf, "PING irc.local")) {
+                            write(i, PONG, strlen(PONG));
+                        }
+
+                        // write(i, buf, str_len);
                     }
                 }
             }
