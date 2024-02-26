@@ -1,7 +1,7 @@
 #!/bin/sh
 
 sudo apt-get update -y
-sudo apt-get install -y irssi inspircd tcpflow
+sudo apt-get install -y irssi inspircd tcpflow netcat
 
 sudo chown -R root:root /etc/inspircd/inspircd.conf
 sudo mkdir /var/run/inspircd
