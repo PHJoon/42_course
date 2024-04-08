@@ -1,25 +1,15 @@
-FROM debian:buster
+FROM debian:bullseye
 
-RUN apt-get update -y && apt-get upgrade -y && \
-apt-get -y install mariadb-client \
-wordpress \
-php7.3 \
-php-fpm \
-php-cli \
-wget \
-curl \
-php-mysql \
-php-mbstring \
-php-xml \
-sendmail \
-vim
+RUN apt-get update -y && apt-get install -y php7.4-fpm php-mysql php-mbstring wget sendmail
 
-RUN wget https://wordpress.org/latest.tar.gz && \
-tar -xvf latest.tar.gz && \
-mv /wordpress/* /var/www/html/ && \
-chown -R www-data:www-data /var/www/html && \
-rm -r /wordpress latest.tar.gz
+COPY ./conf/www.conf /etc/php/7.4/fpm/pool.d/www.conf
 
-RUN mv /var/www/html/wp-config-sample.php /var/www/html/wp-config.php
+COPY ./tools/set_wordpress.sh /home/
 
-CMD ["/bin/bash"]
+RUN chmod +x /home/set_wordpress.sh
+
+RUN mkdir -p /var/www/html/ && chown -R www-data:www-data /var/www/html/ 
+
+WORKDIR /var/www/html/
+
+ENTRYPOINT [ "/bin/bash", "/home/set_wordpress.sh" ]

@@ -1,17 +1,15 @@
-FROM debian:buster
+FROM debian:bullseye
 
-# ENV MYSQL_ROOT_PASSWORD=rootpw
-# ENV MYSQL_USER=normal
-# ENV MYSQL_PASSWORD=normalpw
-# ENV MYSQL_DATABASE=wordpress_db
+RUN apt-get update -y && apt-get install -y mariadb-server mariadb-client
 
-RUN apt-get update -y && apt-get upgrade -y && \
-apt-get -y install mariadb-server
+COPY ./conf/mariadb.conf /etc/mysql/mariadb.conf.d/50-server.cnf
 
-COPY ./conf/my.cnf /etc/mysql/mariadb.conf.d/50-server.cnf
+COPY ./tools/start_mariadb.sh /home
 
-COPY ./tools/start.sh /usr/start.sh
+RUN mkdir -p /var/run/mysqld && chown -R mysql:mysql /var/run/mysqld && chmod 777 /var/run/mysqld
 
-CMD ["/bin/bash", "/usr/start.sh"]
+RUN mkdir -p var/mysql && ln -s /tmp/mysql.sock var/mysql/mysql.sock
 
-# ENTRYPOINT ["echo", "hello"]
+RUN chmod +x /home/start_mariadb.sh
+
+ENTRYPOINT ["/bin/bash", "/home/start_mariadb.sh"]
