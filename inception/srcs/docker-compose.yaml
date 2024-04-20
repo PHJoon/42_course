@@ -1,6 +1,6 @@
 services:
   mariadb:
-    image: my-mariadb:v1
+    image: mariadb
     container_name: mariadb
     build: ./requirements/mariadb
     restart: always
@@ -24,7 +24,7 @@ services:
         ]
       timeout: 10s
   nginx:
-    image: my-nginx:v1
+    image: nginx
     container_name: nginx
     build: ./requirements/nginx
     restart: always
@@ -41,7 +41,7 @@ services:
       - wordpress
 
   wordpress:
-    image: my-wordpress:v1
+    image: wordpress
     container_name: wordpress
     build: ./requirements/wordpress
     env_file:
