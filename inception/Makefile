@@ -1,9 +1,9 @@
 volume = /home/hyungjpa/data
 db_data = $(volume)/mariadb
 wp_data = $(volume)/wordpress
-mariadbImg = my-mariadb
-wordpressImg = my-wordpress
-nginxImg = my-nginx
+mariadbImg = mariadb:inception
+wordpressImg = wordpress:inception
+nginxImg = nginx:inception
 
 up: build
 	docker compose -f srcs/docker-compose.yaml up
@@ -31,12 +31,12 @@ downVolume:
 re: down all
 
 imgClean:
-	@if [ $(shell docker image ls | grep $(mariadbImg) | wc -l) -eq 1 ]; \
-		then docker rmi $(mariadbImg):v1; fi
-	@if [ $(shell docker image ls | grep $(wordpressImg) | wc -l) -eq 1 ]; \
-		then docker rmi $(wordpressImg):v1; fi
-	@if [ $(shell docker image ls | grep $(nginxImg) | wc -l) -eq 1 ]; \
-		then docker rmi $(nginxImg):v1; fi
+	@if [ $(shell docker image ls | grep mariadb | wc -l) -eq 1 ]; \
+		then docker rmi $(mariadbImg); fi
+	@if [ $(shell docker image ls | grep wordpress | wc -l) -eq 1 ]; \
+		then docker rmi $(wordpressImg); fi
+	@if [ $(shell docker image ls | grep nginx | wc -l) -eq 1 ]; \
+		then docker rmi $(nginxImg); fi
 
 dataClean:
 	sudo rm -rf /home/hyungjpa/data/*
