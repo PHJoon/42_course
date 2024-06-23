@@ -32,12 +32,10 @@ static double	under_decimalpoint(char *s, size_t i)
 
 double	ft_atod(char *s)
 {
-	size_t	len;
 	size_t	i;
 	double	flag;
 	double	res;
 
-	len = ft_strlen(s);
 	flag = 1;
 	res = 0;
 	i = 0;
